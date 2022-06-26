@@ -27,10 +27,7 @@ public class Campus {
     private LocalDateTime dtCriacao;
     private LocalDateTime dtModificacao;
 
-    public Campus() {
-        this.dtCriacao = LocalDateTime.now();
-        this.dtModificacao = LocalDateTime.now();
-    }
+    public Campus() {}
 
     public long getId() {
         return id;
