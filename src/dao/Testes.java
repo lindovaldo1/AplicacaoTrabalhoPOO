@@ -8,6 +8,7 @@ package dao;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import model.Atividades;
 import model.Campus;
 import model.Orientacoes;
    
@@ -21,23 +22,23 @@ public class Testes {
 //        
 //        Campus obj = new Campus();
 //        CampusDAO objdao = new CampusDAO();
-        Orientacoes obj = new Orientacoes();
-        OrientacoesDAO objdao = new OrientacoesDAO();
+//        Orientacoes obj = new Orientacoes();
+//        OrientacoesDAO objdao = new OrientacoesDAO();
 ////        Disciplina obj = new Disciplina();
 //        DisciplinaDAO objdao = new DisciplinaDAO();
 //          Curso obj = new Curso();
 //          CursoDAO objdao = new CursoDAO();
+Atividades obj = new Atividades();
+AtividadesDAO objdao = new AtividadesDAO();        
         
-        
-        long indiceBusca = 3;
+        long indiceBusca = 2;
 
-        obj.setNomeAluno("Lindovaldo");
-        obj.setServidor(indiceBusca);
-        obj.setTipoOrientacao(1);
-        obj.setHorasSemanais(20);
+        obj.setDescricao("oxi");
+        obj.setHorasSemanais(2);
         obj.setDtInicio(LocalDate.now());
-        obj.setDtTermino(LocalDate.now());
-        obj.setId(5);
+        obj.setServidor(18);
+        obj.setDtFim(LocalDate.now());
+        obj.setId(indiceBusca);
         obj.setDtCriacao(LocalDateTime.now());
         obj.setDtModificacao(LocalDateTime.now());
         
@@ -45,15 +46,15 @@ public class Testes {
 
 
 //        objdao.adiciona(obj);
-//        objdao.remove(4);
+//        objdao.remove(1);
 //        objdao.altera(obj);
 
-        System.out.println(objdao.buscaEspecifico(5));
+        System.out.println(objdao.buscaEspecifico(2));
 //        
 
-        for (Orientacoes arg : objdao.lista()){
+        for (Atividades arg : objdao.lista()){
             System.out.println(arg);
         }
-//        
+////        
     }
 }
