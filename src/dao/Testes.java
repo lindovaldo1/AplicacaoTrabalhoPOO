@@ -5,54 +5,54 @@
  */
 package dao;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import model.Atividades;
 import model.Campus;
 import model.Orientacoes;
-   
+import model.Comissoes;
+
 /**
  *
  * @author Lindovaldo
  */
 public class Testes {
+
     public static void main(String[] args) {
-        
+
 //        
 //        Campus obj = new Campus();
 //        CampusDAO objdao = new CampusDAO();
 //        Orientacoes obj = new Orientacoes();
 //        OrientacoesDAO objdao = new OrientacoesDAO();
-////        Disciplina obj = new Disciplina();
+////      Disciplina obj = new Disciplina();
 //        DisciplinaDAO objdao = new DisciplinaDAO();
-//          Curso obj = new Curso();
-//          CursoDAO objdao = new CursoDAO();
-Atividades obj = new Atividades();
-AtividadesDAO objdao = new AtividadesDAO();        
-        
-        long indiceBusca = 2;
+//        Curso obj = new Curso();
+//        CursoDAO objdao = new CursoDAO();
+//        Atividades obj = new Atividades();
+//        AtividadesDAO objdao = new AtividadesDAO();
+          Comissoes obj = new Comissoes();
+          ComissoesDAO objdao = new ComissoesDAO();
+          
+        long indiceBusca = 1;
 
-        obj.setDescricao("oxi");
-        obj.setHorasSemanais(2);
-        obj.setDtInicio(LocalDate.now());
-        obj.setServidor(18);
-        obj.setDtFim(LocalDate.now());
         obj.setId(indiceBusca);
+        obj.setComissao("Comissao Modificada");
+        obj.sethSemanais(2.22);
+        obj.setDtInicio(LocalDate.now());
+        obj.setDtFim(LocalDate.now());
+        obj.setEstado(1);
+        
         obj.setDtCriacao(LocalDateTime.now());
         obj.setDtModificacao(LocalDateTime.now());
-        
 
-
-
-//        objdao.adiciona(obj);
-//        objdao.remove(1);
+        objdao.adiciona(obj);
+//        objdao.remove(2);
 //        objdao.altera(obj);
-
-        System.out.println(objdao.buscaEspecifico(2));
+        System.out.println(objdao.buscaEspecifico(indiceBusca));
 //        
 
-        for (Atividades arg : objdao.lista()){
+        for (Comissoes arg : objdao.lista()) {
             System.out.println(arg);
         }
 ////        
