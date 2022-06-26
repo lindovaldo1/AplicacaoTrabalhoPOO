@@ -171,7 +171,7 @@ public class DisciplinaDAO {
                   
                   obj.setDtCriacao(criacao);
                   obj.setDtModificacao(modificacao);
-
+                  
                   arr.add(obj);
 
               }

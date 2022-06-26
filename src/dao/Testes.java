@@ -7,9 +7,9 @@ package dao;
 
 
 import java.time.LocalDate;
-import model.Curso;
-import model.Servidor;
-import model.Disciplina;
+import java.time.LocalDateTime;
+import model.Campus;
+import model.Orientacoes;
    
 /**
  *
@@ -18,26 +18,41 @@ import model.Disciplina;
 public class Testes {
     public static void main(String[] args) {
         
-        Disciplina obj = new Disciplina();
-        DisciplinaDAO objdao = new DisciplinaDAO();
-//        CursoDAO objdao = new CursoDAO();
-        long indiceBusca = 2;
+//        
+//        Campus obj = new Campus();
+//        CampusDAO objdao = new CampusDAO();
+        Orientacoes obj = new Orientacoes();
+        OrientacoesDAO objdao = new OrientacoesDAO();
+////        Disciplina obj = new Disciplina();
+//        DisciplinaDAO objdao = new DisciplinaDAO();
+//          Curso obj = new Curso();
+//          CursoDAO objdao = new CursoDAO();
+        
+        
+        long indiceBusca = 3;
 
-        obj.setNome("Analise de dados");
-        obj.setCurso(Long.parseLong("1"));
-        obj.setCargaHoraria(2.5);
-        obj.setPeriodicidade(1);
+        obj.setNomeAluno("Lindovaldo");
+        obj.setServidor(indiceBusca);
+        obj.setTipoOrientacao(1);
+        obj.setHorasSemanais(20);
+        obj.setDtInicio(LocalDate.now());
+        obj.setDtTermino(LocalDate.now());
+        obj.setId(5);
+        obj.setDtCriacao(LocalDateTime.now());
+        obj.setDtModificacao(LocalDateTime.now());
         
-        obj.setId(indiceBusca);
-        
-//        objdao.adiciona(obj);;
-//        objdao.remove(indiceBusca);
+
+
+
+//        objdao.adiciona(obj);
+//        objdao.remove(4);
 //        objdao.altera(obj);
 
-        System.out.println(objdao.buscaEspecifico(indiceBusca));
+        System.out.println(objdao.buscaEspecifico(5));
 //        
-        for (Disciplina arg : objdao.lista()){
-            System.out.println((Disciplina)arg);
+
+        for (Orientacoes arg : objdao.lista()){
+            System.out.println(arg);
         }
 //        
     }

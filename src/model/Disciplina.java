@@ -79,6 +79,12 @@ public class Disciplina {
     }
 
     @Override
+    public String toString() {
+        return "Disciplina{" + "id=" + id + ", nome=" + nome + ", cargaHoraria=" + cargaHoraria + ", periodicidade=" + periodicidade + ", curso=" + curso + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+    }
+
+    
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
