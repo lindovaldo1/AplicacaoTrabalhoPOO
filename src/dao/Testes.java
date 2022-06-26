@@ -6,6 +6,8 @@
 package dao;
 
 
+import java.time.LocalDate;
+import model.Curso;
 import model.Servidor;
 
 /**
@@ -15,18 +17,27 @@ import model.Servidor;
 public class Testes {
     public static void main(String[] args) {
         
-        Servidor servidor = new Servidor();
-        CampusDAO campusDAO = new CampusDAO();
-        ServidorDAO servidordao = new ServidorDAO(campusDAO);
+        Curso curso = new Curso();
+      
+        CursoDAO cursodao = new CursoDAO();
         
 
-
-
-        servidordao.remove(25);
-        servidordao.remove(26);
-
+        curso.setNome("Data cience");
+        curso.setEstado(1);
+        curso.setCampus(Long.parseLong("2"));
+        curso.setAnoInicio(LocalDate.now());
+        curso.setAnoTermino(LocalDate.now());
+        curso.setId(1);
         
-        for (Servidor arg : servidordao.lista()) {
+        cursodao.remove(3);
+
+//        servidor.setId(21);
+        
+//        servidordao.remove(27);
+
+        System.out.println(cursodao.buscaEspecifico(2));
+//        
+        for (Curso arg : cursodao.lista()) {
             System.out.println(arg);
         }
         

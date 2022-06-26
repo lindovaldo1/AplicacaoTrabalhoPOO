@@ -24,7 +24,7 @@ import dao.ServidoresComissoesDAO;
 public class Main {
     
     CampusDAO campusDao = new CampusDAO();
-    ServidorDAO servidorDao = new ServidorDAO(campusDao);
+    ServidorDAO servidorDao = new ServidorDAO();
     CursoDAO cursoDao = new CursoDAO();
     DisciplinaDAO disciplinaDao = new DisciplinaDAO();
     OfertaDisciplinaCursoDAO ofertaDao = new OfertaDisciplinaCursoDAO();

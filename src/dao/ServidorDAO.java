@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import model.Campus;
 import model.Servidor;
 
 /**
@@ -23,23 +22,12 @@ import model.Servidor;
  */
 public class ServidorDAO {
 
-    CampusDAO campusDao;
-
-    public ServidorDAO(CampusDAO campusDAO) {
-        this.campusDao = campusDao;
-    }
-    
-    public void setCampusDao(CampusDAO campusDao) {
-        this.campusDao = campusDao;
-    }
-    
-    
     
     public void adiciona(Servidor obj){
         
          String sql = "insert into servidores"
-                    + " (nome,email,campus,cargo,login,senha,criacao,modificacao)"
-                    + " values (?,?,?,?,?,?,?,?)";
+                    + " (nome,email,campus,cargo,login,senha,tipo_usuario,criacao,modificacao)"
+                    + " values (?,?,?,?,?,?,?,?,?)";
          
         try (Connection connection = new ConnectionFactory().getConnection();
             
@@ -51,9 +39,10 @@ public class ServidorDAO {
             stmt.setInt(4, obj.getCargo());
             stmt.setString(5, obj.getLogin());
             stmt.setString(6, obj.getSenha());
+            stmt.setInt(7, obj.getTipoUsuario());
            
-            stmt.setTimestamp (7, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setTimestamp (8, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setTimestamp (9, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             
             stmt.execute();
             
@@ -88,6 +77,7 @@ public class ServidorDAO {
                   int cargo = rs.getInt("cargo");
                   String login = rs.getString("login");
                   String senha = rs.getString("senha");
+                  int tipoUsuario = rs.getInt("tipo_usuario");
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
                   Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
@@ -100,6 +90,7 @@ public class ServidorDAO {
                   servidor.setCargo(cargo);
                   servidor.setLogin(login);
                   servidor.setSenha(senha);
+                  servidor.setTipoUsuario(tipoUsuario);
                   servidor.setDtCriacao(criacao);
                   servidor.setDtModificacao(modificacao);
                     
@@ -131,6 +122,7 @@ public class ServidorDAO {
                   int cargo = rs.getInt("cargo");
                   String login = rs.getString("login");
                   String senha = rs.getString("senha");
+                  int tipoUsuario = rs.getInt("tipo_usuario");
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
                   Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
@@ -145,6 +137,7 @@ public class ServidorDAO {
                   servidor.setCargo(cargo);
                   servidor.setLogin(login);
                   servidor.setSenha(senha);
+                  servidor.setTipoUsuario(tipoUsuario);
                   servidor.setDtCriacao(criacao);
                   servidor.setDtModificacao(modificacao);
 
@@ -181,6 +174,7 @@ public class ServidorDAO {
                    +"cargo = ?, "
                    +"login = ?, "
                    +"senha = ?, "
+                   +"tipo_usuario = ?,"
                    +"modificacao = ? "
                    + "where id = ? ";
         
@@ -194,8 +188,9 @@ public class ServidorDAO {
             stmt.setInt(4, obj.getCargo());
             stmt.setString(5, obj.getLogin());
             stmt.setString(6, obj.getSenha());
-            stmt.setTimestamp(7, java.sql.Timestamp.valueOf(LocalDateTime.now()));
-            stmt.setLong(8, obj.getId());
+            stmt.setInt(7, obj.getTipoUsuario());
+            stmt.setTimestamp(8, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setLong(9, obj.getId());
             
             
             stmt.execute();
