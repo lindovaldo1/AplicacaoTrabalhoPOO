@@ -60,7 +60,7 @@ public class CampusDAO {
                    + "from campus "
                    + "where id = ?";
         
-        Campus campus = new Campus();
+        Campus obj = new Campus();
         
         try (Connection connection = new ConnectionFactory().getConnection(); 
              PreparedStatement ps = connection.prepareStatement(sql)         ){
@@ -85,27 +85,27 @@ public class CampusDAO {
                   String cep = rs.getString("cep");
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
+                  Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
 
-                  campus.setId(indice);
-                  campus.setNome(nome);
-                  campus.setAbreviacao(abreviacao);
-                  campus.setDuracaoAula(duracaoAulas);
-                  campus.setDtCriacaoCampus(dtCriacao);
-                  campus.setCidade(cidade);
-                  campus.setBairro(bairro);
-                  campus.setEndereco(endereco);
-                  campus.setCep(cep);
-                  campus.setDtCriacao(criacao);
-                  campus.setDtModificacao(modificacao);
+                  obj.setId(indice);
+                  obj.setNome(nome);
+                  obj.setAbreviacao(abreviacao);
+                  obj.setDuracaoAula(duracaoAulas);
+                  obj.setDtCriacaoCampus(dtCriacao);
+                  obj.setCidade(cidade);
+                  obj.setBairro(bairro);
+                  obj.setEndereco(endereco);
+                  obj.setCep(cep);
+                  obj.setDtCriacao(criacao);
+                  obj.setDtModificacao(modificacao);
                     
                 }
             }
         } catch (SQLException e) {
              throw new RuntimeException(e);
         }
-        return campus;
+        return obj;
     }
     
     public List<Campus> lista() {
@@ -132,23 +132,24 @@ public class CampusDAO {
                   String cep = rs.getString("cep");
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
+                  Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
 
-                  Campus campus = new Campus();
-                  campus.setId(indice);
-                  campus.setNome(nome);
-                  campus.setAbreviacao(abreviacao);
-                  campus.setDuracaoAula(duracaoAulas);
-                  campus.setDtCriacaoCampus(dtCriacao);
-                  campus.setCidade(cidade);
-                  campus.setBairro(bairro);
-                  campus.setEndereco(endereco);
-                  campus.setCep(cep);
-                  campus.setDtCriacao(criacao);
-                  campus.setDtModificacao(modificacao);
+                  Campus obj = new Campus();
+                  
+                  obj.setId(indice);
+                  obj.setNome(nome);
+                  obj.setAbreviacao(abreviacao);
+                  obj.setDuracaoAula(duracaoAulas);
+                  obj.setDtCriacaoCampus(dtCriacao);
+                  obj.setCidade(cidade);
+                  obj.setBairro(bairro);
+                  obj.setEndereco(endereco);
+                  obj.setCep(cep);
+                  obj.setDtCriacao(criacao);
+                  obj.setDtModificacao(modificacao);
 
-                  arr.add(campus);
+                  arr.add(obj);
 
               }
           } catch (SQLException e) {

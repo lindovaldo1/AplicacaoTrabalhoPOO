@@ -9,7 +9,8 @@ package dao;
 import java.time.LocalDate;
 import model.Curso;
 import model.Servidor;
-
+import model.Disciplina;
+   
 /**
  *
  * @author Lindovaldo
@@ -17,29 +18,27 @@ import model.Servidor;
 public class Testes {
     public static void main(String[] args) {
         
-        Curso curso = new Curso();
-      
-        CursoDAO cursodao = new CursoDAO();
-        
+        Disciplina obj = new Disciplina();
+        DisciplinaDAO objdao = new DisciplinaDAO();
+//        CursoDAO objdao = new CursoDAO();
+        long indiceBusca = 2;
 
-        curso.setNome("Data cience");
-        curso.setEstado(1);
-        curso.setCampus(Long.parseLong("2"));
-        curso.setAnoInicio(LocalDate.now());
-        curso.setAnoTermino(LocalDate.now());
-        curso.setId(1);
+        obj.setNome("Analise de dados");
+        obj.setCurso(Long.parseLong("1"));
+        obj.setCargaHoraria(2.5);
+        obj.setPeriodicidade(1);
         
-        cursodao.remove(3);
-
-//        servidor.setId(21);
+        obj.setId(indiceBusca);
         
-//        servidordao.remove(27);
+//        objdao.adiciona(obj);;
+//        objdao.remove(indiceBusca);
+//        objdao.altera(obj);
 
-        System.out.println(cursodao.buscaEspecifico(2));
+        System.out.println(objdao.buscaEspecifico(indiceBusca));
 //        
-        for (Curso arg : cursodao.lista()) {
-            System.out.println(arg);
+        for (Disciplina arg : objdao.lista()){
+            System.out.println((Disciplina)arg);
         }
-        
+//        
     }
 }

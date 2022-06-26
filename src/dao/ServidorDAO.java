@@ -59,7 +59,7 @@ public class ServidorDAO {
                    + "from servidores "
                    + "where id = ?";
         
-        Servidor servidor = new Servidor();
+        Servidor obj = new Servidor();
         
         try (Connection connection = new ConnectionFactory().getConnection(); 
              PreparedStatement ps = connection.prepareStatement(sql)         ){
@@ -80,26 +80,26 @@ public class ServidorDAO {
                   int tipoUsuario = rs.getInt("tipo_usuario");
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
+                  Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
 
-                  servidor.setId(indice);
-                  servidor.setNome(nome);
-                  servidor.setEmail(email);
-                  servidor.setCampus(campus);
-                  servidor.setCargo(cargo);
-                  servidor.setLogin(login);
-                  servidor.setSenha(senha);
-                  servidor.setTipoUsuario(tipoUsuario);
-                  servidor.setDtCriacao(criacao);
-                  servidor.setDtModificacao(modificacao);
+                  obj.setId(indice);
+                  obj.setNome(nome);
+                  obj.setEmail(email);
+                  obj.setCampus(campus);
+                  obj.setCargo(cargo);
+                  obj.setLogin(login);
+                  obj.setSenha(senha);
+                  obj.setTipoUsuario(tipoUsuario);
+                  obj.setDtCriacao(criacao);
+                  obj.setDtModificacao(modificacao);
                     
                 }
             }
         } catch (SQLException e) {
-             throw new RuntimeException(e);
+             throw new RuntimeException("Erro. Requisicao não pode ser feita. RuntimeException");
         }
-        return servidor;
+        return obj;
     }
     
     public List<Servidor> lista() {
@@ -125,23 +125,23 @@ public class ServidorDAO {
                   int tipoUsuario = rs.getInt("tipo_usuario");
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
+                  Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
                   
-                  Servidor servidor = new Servidor();
+                  Servidor obj = new Servidor();
 
-                  servidor.setId(indice);
-                  servidor.setNome(nome);
-                  servidor.setEmail(email);
-                  servidor.setCampus(campus);
-                  servidor.setCargo(cargo);
-                  servidor.setLogin(login);
-                  servidor.setSenha(senha);
-                  servidor.setTipoUsuario(tipoUsuario);
-                  servidor.setDtCriacao(criacao);
-                  servidor.setDtModificacao(modificacao);
+                  obj.setId(indice);
+                  obj.setNome(nome);
+                  obj.setEmail(email);
+                  obj.setCampus(campus);
+                  obj.setCargo(cargo);
+                  obj.setLogin(login);
+                  obj.setSenha(senha);
+                  obj.setTipoUsuario(tipoUsuario);
+                  obj.setDtCriacao(criacao);
+                  obj.setDtModificacao(modificacao);
 
-                  arr.add(servidor);
+                  arr.add(obj);
 
               }
           } catch (SQLException e) {

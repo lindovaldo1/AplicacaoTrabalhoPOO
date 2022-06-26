@@ -57,7 +57,7 @@ public class CursoDAO {
                    + "from cursos "
                    + "where id = ?";
         
-        Curso curso = new Curso();
+        Curso obj = new Curso();
         
         try (Connection connection = new ConnectionFactory().getConnection(); 
              PreparedStatement ps = connection.prepareStatement(sql)         ){
@@ -78,24 +78,24 @@ public class CursoDAO {
                   LocalDate anoTermino = anoTerminoDate.toLocalDate();
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
+                  Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
 
-                  curso.setId(indice);
-                  curso.setNome(nome);
-                  curso.setEstado(estado);
-                  curso.setCampus(campus);
-                  curso.setAnoInicio(anoInicio);
-                  curso.setAnoTermino(anoTermino);
-                  curso.setDtCriacao(criacao);
-                  curso.setDtModificacao(modificacao);
+                  obj.setId(indice);
+                  obj.setNome(nome);
+                  obj.setEstado(estado);
+                  obj.setCampus(campus);
+                  obj.setAnoInicio(anoInicio);
+                  obj.setAnoTermino(anoTermino);
+                  obj.setDtCriacao(criacao);
+                  obj.setDtModificacao(modificacao);
                     
                 }
             }
         } catch (SQLException e) {
-             throw new RuntimeException(e);
+             throw new RuntimeException("Erro. Requisicao não pode ser feita. RuntimeException");
         }
-        return curso;
+        return obj;
     }
     
     public List<Curso> lista() {
@@ -121,21 +121,21 @@ public class CursoDAO {
                   LocalDate anoTermino = anoTerminoDate.toLocalDate();
                   Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
+                  Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
                   
-                  Curso curso = new Curso();
+                  Curso obj = new Curso();
                   
-                  curso.setId(indice);
-                  curso.setNome(nome);
-                  curso.setEstado(estado);
-                  curso.setCampus(campus);
-                  curso.setAnoInicio(anoInicio);
-                  curso.setAnoTermino(anoTermino);
-                  curso.setDtCriacao(criacao);
-                  curso.setDtModificacao(modificacao);
+                  obj.setId(indice);
+                  obj.setNome(nome);
+                  obj.setEstado(estado);
+                  obj.setCampus(campus);
+                  obj.setAnoInicio(anoInicio);
+                  obj.setAnoTermino(anoTermino);
+                  obj.setDtCriacao(criacao);
+                  obj.setDtModificacao(modificacao);
 
-                  arr.add(curso);
+                  arr.add(obj);
 
               }
           } catch (SQLException e) {
