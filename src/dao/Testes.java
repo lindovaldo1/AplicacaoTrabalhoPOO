@@ -7,6 +7,7 @@ package dao;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import model.AtaReunioes;
 import model.Atividades;
 import model.Campus;
 import model.Orientacoes;
@@ -31,28 +32,29 @@ public class Testes {
 //        CursoDAO objdao = new CursoDAO();
 //        Atividades obj = new Atividades();
 //        AtividadesDAO objdao = new AtividadesDAO();
-          Comissoes obj = new Comissoes();
-          ComissoesDAO objdao = new ComissoesDAO();
-          
-        long indiceBusca = 1;
+//        Comissoes obj = new Comissoes();
+//        ComissoesDAO objdao = new ComissoesDAO();
+        AtaReunioesDAO objdao = new AtaReunioesDAO();
+        AtaReunioes obj = new AtaReunioes();
+         
+        long indiceBusca = 6;
 
         obj.setId(indiceBusca);
-        obj.setComissao("Comissao Modificada");
-        obj.sethSemanais(2.22);
-        obj.setDtInicio(LocalDate.now());
-        obj.setDtFim(LocalDate.now());
-        obj.setEstado(1);
+        obj.setComissao(3);
+        obj.setDtReuniao(LocalDate.now());
+        obj.setAtaConteudo("conteudo");
+        obj.setSecretario(18);
         
         obj.setDtCriacao(LocalDateTime.now());
         obj.setDtModificacao(LocalDateTime.now());
 
         objdao.adiciona(obj);
-//        objdao.remove(2);
+//        objdao.remove(6);
 //        objdao.altera(obj);
-        System.out.println(objdao.buscaEspecifico(indiceBusca));
+//        System.out.println(objdao.buscaEspecifico(indiceBusca));
 //        
 
-        for (Comissoes arg : objdao.lista()) {
+        for (AtaReunioes arg : objdao.lista()) {
             System.out.println(arg);
         }
 ////        
