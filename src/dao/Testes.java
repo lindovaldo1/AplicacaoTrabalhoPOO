@@ -48,7 +48,7 @@ public class Testes {
         obj.setDtCriacao(LocalDateTime.now());
         obj.setDtModificacao(LocalDateTime.now());
 
-        objdao.adiciona(obj);
+//        objdao.adiciona(obj);
 //        objdao.remove(6);
 //        objdao.altera(obj);
 //        System.out.println(objdao.buscaEspecifico(indiceBusca));
