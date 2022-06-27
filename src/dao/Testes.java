@@ -12,6 +12,7 @@ import model.Atividades;
 import model.Campus;
 import model.Orientacoes;
 import model.Comissoes;
+import model.Servidor;
 
 /**
  *
@@ -20,8 +21,9 @@ import model.Comissoes;
 public class Testes {
 
     public static void main(String[] args) {
-
-//        
+        
+        Servidor obj = new Servidor();
+        ServidorDAO objdao = new ServidorDAO();
 //        Campus obj = new Campus();
 //        CampusDAO objdao = new CampusDAO();
 //        Orientacoes obj = new Orientacoes();
@@ -34,29 +36,48 @@ public class Testes {
 //        AtividadesDAO objdao = new AtividadesDAO();
 //        Comissoes obj = new Comissoes();
 //        ComissoesDAO objdao = new ComissoesDAO();
-        AtaReunioesDAO objdao = new AtaReunioesDAO();
-        AtaReunioes obj = new AtaReunioes();
+//        AtaReunioesDAO objdao = new AtaReunioesDAO();
+//        AtaReunioes obj = new AtaReunioes();
          
-        long indiceBusca = 6;
-
-        obj.setId(indiceBusca);
-        obj.setComissao(3);
-        obj.setDtReuniao(LocalDate.now());
-        obj.setAtaConteudo("conteudo");
-        obj.setSecretario(18);
-        
-        obj.setDtCriacao(LocalDateTime.now());
-        obj.setDtModificacao(LocalDateTime.now());
+//        long indiceBusca = 8;
+//
+//        obj.setId(indiceBusca);
+//        obj.setComissao(3);
+//        obj.setDtReuniao(LocalDate.now());
+//        obj.setAtaConteudo("conteudo alterado");
+//        obj.setSecretario(18);
+//        
+//        obj.setDtCriacao(LocalDateTime.now());
+//        obj.setDtModificacao(LocalDateTime.now());
 
 //        objdao.adiciona(obj);
-//        objdao.remove(6);
+//        objdao.remove(7);
 //        objdao.altera(obj);
 //        System.out.println(objdao.buscaEspecifico(indiceBusca));
-//        
-
-        for (AtaReunioes arg : objdao.lista()) {
+        
+        Servidor s3 = new Servidor();
+        s3.setNome("Administrador");
+        s3.setEmail("Administrador@administrador.br");
+        s3.setCampus(Long.parseLong("2"));
+        s3.setCargo(1);
+        s3.setLogin("admin");
+        s3.setSenha("admin");
+        s3.setTipoUsuario(1);
+//        objdao.adiciona(s3);
+        
+        Servidor s4 = new Servidor();
+        s4.setNome("Usuario Comum");
+        s4.setEmail("comum@comum.br");
+        s4.setCampus(Long.parseLong("2"));
+        s4.setCargo(1);
+        s4.setLogin("user");
+        s4.setSenha("user");
+        s4.setTipoUsuario(2);
+//        objdao.adiciona(s4);
+        
+        for (Servidor arg : objdao.lista()) {
             System.out.println(arg);
         }
-////        
+        
     }
 }

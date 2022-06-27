@@ -5,6 +5,7 @@
  */
 package dao;
 
+import extra.Login;
 import factory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -201,4 +202,18 @@ public class ServidorDAO {
             throw new RuntimeException("Erro, elemento não foi alterado. RuntimeException");
         }
     }
+    
+    public Servidor buscaLogin(Login login){
+        
+        List<Servidor> arr = this.lista();
+        
+        for(Servidor servidor : arr){
+            if(servidor.getLogin().equals(login.getLogin()) && servidor.getSenha().equals(login.getSenha())){
+                return servidor;
+            }
+        }
+        
+        return null;
+    }
+        
 }
