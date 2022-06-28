@@ -1,0 +1,11 @@
+-------UserComum----------
+
+subMenuAtaReuniaoPresentes
+subMenuServidorComissao
+subMenuOferta
+
+Relatorios
+
+
+------UserAdministrativo-----
+Tudo
