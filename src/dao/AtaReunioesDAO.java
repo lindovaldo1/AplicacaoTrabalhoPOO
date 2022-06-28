@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.AtaReunioes;
@@ -189,5 +190,45 @@ public class AtaReunioesDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro, elemento não foi alterado. RuntimeException");
         }
+    }
+    
+     @Override
+    public String toString() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Ata Reunioes === \n\n");
+        List<AtaReunioes> obj = this.lista();
+        
+            for(AtaReunioes ataReunioes : obj){
+               txt.append("\tAta Conteudo: " + ataReunioes.getAtaConteudo()+"\t\t\t ID: " + ataReunioes.getId() +"\n"); 
+               txt.append("\tComissao: " + ataReunioes.getComissao()+"\n"); 
+               txt.append("\tData Reuniao: " + ataReunioes.getDtReuniao()+"\n"); 
+               txt.append("\tSecretario: " + ataReunioes.getSecretario()+"\n"); 
+               txt.append("\tData de Criação: " + ataReunioes.getDtCriacao().format(fmt) +"\n"); 
+               txt.append("\tUltima Data de Moificação: " + ataReunioes.getDtModificacao().format(fmt) +"\n\n\n"); 
+    
+            }
+  
+        return txt.toString();
+    }
+    
+    
+    public String toStringMin() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Ata Reunioes === \n\n");
+        List<AtaReunioes> obj = this.lista();
+        
+            for(AtaReunioes ataReunioes : obj){
+               txt.append("\tData de Criacao: " + ataReunioes.getDtCriacao().format(fmtAno)+"\t\t\t ID: " + ataReunioes.getId() +"\n");  
+            }
+  
+        return txt.toString();
     }
 }

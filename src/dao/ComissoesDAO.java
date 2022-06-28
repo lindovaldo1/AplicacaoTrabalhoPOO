@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Comissoes;
@@ -196,5 +197,50 @@ public class ComissoesDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro, elemento não foi alterado. RuntimeException");
         }
+    }
+    
+     @Override
+    public String toString() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Comissoes === \n\n");
+        List<Comissoes> obj = this.lista();
+        
+            for(Comissoes comissoes : obj){
+               txt.append("\n\tNome Comissao: " + comissoes.getComissao()+"\t\t\t ID: " + comissoes.getId() +"\n"); 
+               txt.append("\tHoras Semanais: " + comissoes.gethSemanais()+"\n"); 
+               txt.append("\tData Inicio: " + comissoes.getDtInicio()+"\n"); 
+               txt.append("\tData Termino: " + comissoes.getDtFim().format(fmtAno)+"\n");
+               if(comissoes.getEstado() == 1){
+                   txt.append("\tEstado: ativo"+"\n");
+               }else if(comissoes.getEstado() == 2){
+                   txt.append("\tEstado: inativa"+"\n");
+               }
+               txt.append("\tData de Criacao: " + comissoes.getDtCriacao().format(fmtAno)+"\n"); 
+               txt.append("\tUltima Data de Moificação: " + comissoes.getDtModificacao().format(fmt) +"\n\n\n"); 
+    
+            }
+  
+        return txt.toString();
+    }
+    
+    
+    public String toStringMin() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Comissoes === \n\n");
+        List<Comissoes> obj = this.lista();
+        
+            for(Comissoes comissoes : obj){
+               txt.append("\tNome Comissao: " + comissoes.getComissao()+"\t\t\t ID: " + comissoes.getId() +"\n"); 
+            }
+  
+        return txt.toString();
     }
 }

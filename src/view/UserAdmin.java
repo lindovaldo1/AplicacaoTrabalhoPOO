@@ -16,6 +16,7 @@ import dao.OfertaDisciplinaCursoDAO;
 import dao.OrientacoesDAO;
 import dao.ServidorDAO;
 import dao.ServidoresComissoesDAO;
+import extra.Espaco;
 
 /**
  *
@@ -24,6 +25,7 @@ import dao.ServidoresComissoesDAO;
 public class UserAdmin {
     
     GUI gui;
+    Espaco espaco;
     CampusDAO campusDao;
     ServidorDAO servidorDao;
     CursoDAO cursoDao;
@@ -40,7 +42,7 @@ public class UserAdmin {
     public UserAdmin(CampusDAO campusdao, ServidorDAO servidordao, CursoDAO cursodao, DisciplinaDAO disciplinadao,
                      OfertaDisciplinaCursoDAO ofertadao, OrientacoesDAO orientacoesdao, AtividadesDAO atividadesdao,
                      ComissoesDAO comissoesdao, ServidoresComissoesDAO servidorComissaodao, AtaReunioesDAO atareunioesdao,
-                     AtaReunioesPresentesDAO ataReunioesPresentesdao, GUI gui){
+                     AtaReunioesPresentesDAO ataReunioesPresentesdao, GUI gui, Espaco espaco){
         
         this.gui = gui;
         this.campusDao = campusdao;
@@ -48,11 +50,13 @@ public class UserAdmin {
         this.cursoDao = cursodao;
         this.disciplinaDao = disciplinadao;
         this.ofertaDao = ofertadao;
+        this.orientacoesDao = orientacoesdao;
         this.atividadesDao = atividadesdao;
         this.comissaoDao = comissoesdao;
         this.servidorComissaoDao =servidorComissaodao;
         this.ataReuniaoDao = atareunioesdao;
         this.ataReuniaoPresentesDao= ataReunioesPresentesdao;
+        this.espaco = espaco;
         
         this.main();
     }

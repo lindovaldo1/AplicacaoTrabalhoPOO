@@ -52,10 +52,8 @@ public class Main {
         
         int opcaoLogin = 1; // Apagar Testes tem Login
 //        int opcaoLogin = 2; // Apagar Testes Cadastrar
-        
+
         while(opcaoLogin <= 2){
-            
-            System.out.println(opcaoLogin);
             
 //            login = gui.temLog();
 //            Servidor servidor = servidorDao.buscaLogin(login);
@@ -67,7 +65,7 @@ public class Main {
             Servidor servidor = servidorDao.buscaLogin(login);
             
             if(opcaoLogin == 1 && servidor != null){
-                
+                        
                 if(servidor.getTipoUsuario() == 2){
                    
                    espaco.darEspaco();
@@ -75,7 +73,7 @@ public class Main {
                    
                    UserComum userComum = new UserComum(campusDao, servidorDao, cursoDao, disciplinaDao, ofertaDao,
                                                     orientacoesDao, atividadesDao, comissaoDao, servidorComissaoDao,
-                                                    ataReuniaoDao, ataReuniaoPresentesDao, gui);
+                                                    ataReuniaoDao, ataReuniaoPresentesDao, gui, espaco);
                    
                    
                 }else if(servidor.getTipoUsuario() == 1){
@@ -84,7 +82,7 @@ public class Main {
                     
                     UserAdmin userAdmin = new UserAdmin(campusDao, servidorDao, cursoDao, disciplinaDao, ofertaDao,
                                                     orientacoesDao, atividadesDao, comissaoDao, servidorComissaoDao,
-                                                    ataReuniaoDao, ataReuniaoPresentesDao, gui);
+                                                    ataReuniaoDao, ataReuniaoPresentesDao, gui, espaco);
                     
                 }  
                 
@@ -127,7 +125,7 @@ public class Main {
         }
     
     }
-    
+ 
     public static void main(String[] args) {
         Main main = new Main();
     }

@@ -11,10 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import model.Curso;
 import model.Disciplina;
 /**
  *
@@ -47,50 +48,6 @@ public class DisciplinaDAO {
         } 
         
     }
-    
-   /* public Disciplina buscaEspecifico(long identificador) {
-        
-        String sql = "select * "
-                   + "from disciplinas "
-                   + "where id = ?";
-        
-        Disciplina obj = new Disciplina();
-        
-        try (Connection connection = new ConnectionFactory().getConnection(); 
-             PreparedStatement ps = connection.prepareStatement(sql)         ){
-            
-            ps.setLong(1, identificador);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                
-                while(rs.next()) {
-
-                  Long indice = rs.getLong("id");
-                  String nome = rs.getString("nome");
-                  double cargaHoraria = rs.getDouble("carga_horaria");
-                  int periodicidade = rs.getInt("periodicidade");
-                  Long curso = rs.getLong("curso");
-                  
-                  Timestamp criacaoTimestamp = rs.getTimestamp("criacao");
-                  LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
-                  Timestamp modificacaoTimestamp = rs.getTimestamp("criacao");
-                  LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
-
-                  obj.setId(indice);
-                  obj.setNome(nome);
-                  obj.setCargaHoraria(cargaHoraria);
-                  obj.setPeriodicidade(periodicidade);
-                  obj.setCurso(curso);
-                  obj.setDtCriacao(criacao);
-                  obj.setDtModificacao(modificacao);
-                    
-                }
-            }
-        } catch (SQLException e) {
-             throw new RuntimeException("Erro. Dados não retornados do banco. RuntimeException");
-        }
-        return obj;
-    }*/
     
     public Disciplina buscaEspecifico(long identificador) {
         
@@ -225,6 +182,51 @@ public class DisciplinaDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro, elemento não foi alterado. RuntimeException");
         }
+    }
+    
+     @Override
+    public String toString() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Disciplinas === \n\n");
+        List<Disciplina> obj = this.lista();
+        
+            for(Disciplina disciplina : obj){
+               txt.append("\n\tNome Campus: " + disciplina.getNome() +"\t\t\t ID: " + disciplina.getId() +"\n"); 
+               txt.append("\tCarga Horaria: " + disciplina.getCargaHoraria()+"\n"); 
+               if(disciplina.getPeriodicidade()== 1){
+                   txt.append("\tPeriodicidade: Semestral" +"\n"); 
+               }else if(disciplina.getPeriodicidade()== 2){
+                   txt.append("\tPeriodicidade: Anual" +"\n");
+               }
+               txt.append("\tCurso: " + disciplina.getCurso()+"\n"); 
+               txt.append("\tData de Criacao: " + disciplina.getDtCriacao().format(fmtAno)+"\n"); 
+               txt.append("\tUltima Data de Moificação: " + disciplina.getDtModificacao().format(fmt) +"\n\n\n"); 
+               
+                }
+  
+        return txt.toString();
+    }
+    
+    public String toStringMin() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+
+        txt.append("\t\t\t === Disciplinas=== \n\n");
+        List<Disciplina> obj = this.lista();
+
+        for(Disciplina disciplina : obj){
+           txt.append("\n\tNome Disciplina: " + disciplina.getNome() +"\t\t\t ID: " + disciplina.getId() +"\n"); 
+           txt.append("\tCampus: " + disciplina.getCurso()+"\n"); 
+
+        }
+  
+        return txt.toString();
     }
     
 }

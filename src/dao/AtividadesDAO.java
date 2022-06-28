@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Atividades;
@@ -194,5 +195,48 @@ public class AtividadesDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro, elemento não foi alterado. RuntimeException");
         }
+    }
+    
+     @Override
+    public String toString() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Atividades === \n\n");
+        List<Atividades> obj = this.lista();
+        
+            for(Atividades atividades : obj){
+               txt.append("\tDescricao: " + atividades.getDescricao()+"\t\t\t ID: " + atividades.getId() +"\n"); 
+               txt.append("\tHoras Semanais: " + atividades.getHorasSemanais()+"\n"); 
+               txt.append("\tServidor: " + atividades.getServidor()+"\n"); 
+               txt.append("\tAno Inicio: " + atividades.getDtInicio()+"\n"); 
+               txt.append("\tAno Termino: " + atividades.getDtFim().format(fmtAno)+"\n"); 
+               txt.append("\tData de Criação: " + atividades.getDtCriacao().format(fmt) +"\n"); 
+               txt.append("\tUltima Data de Moificação: " + atividades.getDtModificacao().format(fmt) +"\n\n\n"); 
+    
+            }
+  
+        return txt.toString();
+    }
+    
+    
+    public String toStringMin() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Atividades === \n\n");
+        List<Atividades> obj = this.lista();
+        
+            for(Atividades atividades : obj){
+               txt.append("\n\tDescricao: " + atividades.getDescricao()+"\t\t\t ID: " + atividades.getId() +"\n"); 
+               txt.append("\tServidor: " + atividades.getServidor()+"\n"); 
+    
+            }
+  
+        return txt.toString();
     }
 }

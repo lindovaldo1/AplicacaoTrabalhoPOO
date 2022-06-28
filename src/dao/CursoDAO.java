@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Curso;
@@ -191,5 +192,57 @@ public class CursoDAO {
             throw new RuntimeException("Erro, elemento não foi alterado. RuntimeException");
         }
     }
+   
+    @Override
+    public String toString() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Cursos === \n\n");
+        List<Curso> obj = this.lista();
+        
+            for(Curso curso : obj){
+               txt.append("\tNome Campus: " + curso.getNome() +"\t\t\t ID: " + curso.getId() +"\n"); 
+               txt.append("\tCampus: " + curso.getCampus()+"\n"); 
+               if(curso.getEstado() == 1){
+                   txt.append("\tCampus: Ativo" +"\n"); 
+               }else if(curso.getEstado() == 2){
+                   txt.append("\tCampus: Inativo" +"\n"); 
+               }
+               txt.append("\tAno Inicio: " + curso.getAnoInicio()+"\n"); 
+               txt.append("\tAno Termino: " + curso.getAnoTermino().format(fmtAno)+"\n"); 
+               txt.append("\tData de Criação: " + curso.getDtCriacao().format(fmt) +"\n"); 
+               txt.append("\tData de Criacao: " + curso.getDtCriacao().format(fmtAno)+"\n"); 
+               txt.append("\tData de Modificacao: " + curso.getDtModificacao().format(fmtAno)+"\n"); 
+              
+               txt.append("\tUltima Data de Moificação: " + curso.getDtModificacao().format(fmt) +"\n\n\n"); 
     
+            }
+  
+        return txt.toString();
+    }
+    
+    
+    public String toStringMin() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter fmtAno = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Cursos === \n\n");
+        List<Curso> obj = this.lista();
+        
+            for(Curso curso : obj){
+               txt.append("\tNome Curso: " + curso.getNome() +"\t\t\t ID: " + curso.getId() +"\n"); 
+               txt.append("\tCampus: " + curso.getCampus()+"\n"); 
+               txt.append("\tEstado: " + (curso.getEstado() == 1 ?  "ativo": "inativo")+"\n"); 
+               txt.append("\tAno Inicio: " + curso.getAnoInicio()+"\n\n"); 
+              ; 
+    
+            }
+  
+        return txt.toString();
+    }
 }

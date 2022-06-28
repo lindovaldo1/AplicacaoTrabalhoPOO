@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Campus;
@@ -25,6 +26,7 @@ import model.Campus;
 public class CampusDAO {
     
     public void adiciona(Campus obj){
+        
         
          String sql = "insert into campus"
                     + " (nome,abreviacao,duracao_aulas,data_criacao_campus,cidade,bairro,endereco,cep,criacao,modificacao)"
@@ -107,6 +109,7 @@ public class CampusDAO {
         }
         return obj;
     }
+    
     
     public List<Campus> lista() {
 
@@ -211,4 +214,43 @@ public class CampusDAO {
         }
     }
     
+    @Override
+    public String toString() {
+        
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        StringBuilder txt = new StringBuilder();
+        
+        txt.append("\t\t\t === Campus === \n\n");
+        List<Campus> obj = this.lista();
+        
+            for(Campus campus : obj){
+               txt.append("\tNome Campus: " + campus.getNome() +"\t\t\t ID: " + campus.getId() +"\n"); 
+               txt.append("\tAbreviação Campus: " + campus.getAbreviacao() +"\n"); 
+               txt.append("\tDuração das Aulas no Campus: " + campus.getDuracaoAula() +"\n"); 
+               txt.append("\tData de Criação: " + campus.getDtCriacao().format(fmt) +"\n"); 
+               txt.append("\tCidade do Campus: " + campus.getCidade() +"\n"); 
+               txt.append("\tBairro do Campus: " + campus.getBairro() +"\n"); 
+               txt.append("\tEndereço do Campus: " + campus.getEndereco() +"\n"); 
+               txt.append("\tCep do Campus: " + campus.getCep() +"\n"); 
+               txt.append("\tUltima Data de Moificação: " + campus.getDtModificacao().format(fmt) +"\n\n\n"); 
+            }
+  
+        return txt.toString();
+    }
+    
+    public String toStringMin(){
+        
+        StringBuilder txt = new StringBuilder();
+        
+        List<Campus> obj = this.lista();
+        
+        txt.append("\t\t\t === Campus === \n\n");
+        
+        for (Campus campus : obj) {
+            txt.append("\tNome Campus: " + campus.getNome() +"\t\t\t ID: " + campus.getId() +"\n"); 
+            txt.append("\tCidade do Campus: " + campus.getCidade() +"\n"); 
+        }
+        
+        return txt.toString();
+    }
 }

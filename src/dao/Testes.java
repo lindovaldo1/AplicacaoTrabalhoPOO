@@ -22,12 +22,12 @@ public class Testes {
 
     public static void main(String[] args) {
         
-        Servidor obj = new Servidor();
-        ServidorDAO objdao = new ServidorDAO();
+//        Servidor obj = new Servidor();
+//        ServidorDAO objdao = new ServidorDAO();
 //        Campus obj = new Campus();
 //        CampusDAO objdao = new CampusDAO();
-//        Orientacoes obj = new Orientacoes();
-//        OrientacoesDAO objdao = new OrientacoesDAO();
+        Orientacoes obj = new Orientacoes();
+        OrientacoesDAO objdao = new OrientacoesDAO();
 ////      Disciplina obj = new Disciplina();
 //        DisciplinaDAO objdao = new DisciplinaDAO();
 //        Curso obj = new Curso();
@@ -39,7 +39,7 @@ public class Testes {
 //        AtaReunioesDAO objdao = new AtaReunioesDAO();
 //        AtaReunioes obj = new AtaReunioes();
          
-//        long indiceBusca = 8;
+        long indiceBusca = 5;
 //
 //        obj.setId(indiceBusca);
 //        obj.setComissao(3);
@@ -53,7 +53,7 @@ public class Testes {
 //        objdao.adiciona(obj);
 //        objdao.remove(7);
 //        objdao.altera(obj);
-//        System.out.println(objdao.buscaEspecifico(indiceBusca));
+        System.out.println(objdao.buscaEspecifico(indiceBusca));
         
         Servidor s3 = new Servidor();
         s3.setNome("Administrador");
@@ -75,7 +75,7 @@ public class Testes {
         s4.setTipoUsuario(2);
 //        objdao.adiciona(s4);
         
-        for (Servidor arg : objdao.lista()) {
+        for (Orientacoes arg : objdao.lista()) {
             System.out.println(arg);
         }
         

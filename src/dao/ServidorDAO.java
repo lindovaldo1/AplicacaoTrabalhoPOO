@@ -13,8 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import model.Campus;
 import model.Servidor;
 
 /**
@@ -22,7 +24,12 @@ import model.Servidor;
  * @author Lindovaldo
  */
 public class ServidorDAO {
-
+    
+    CampusDAO campusdao;
+    
+    public void getCampusDao(CampusDAO campus){
+        this.campusdao = campus;
+    }
     
     public void adiciona(Servidor obj){
         
@@ -215,5 +222,45 @@ public class ServidorDAO {
         
         return null;
     }
+    
+    @Override
+    public String toString() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        StringBuilder txt = new StringBuilder();
         
+        List<Servidor> obj = this.lista();
+       
+        for (Servidor arr : obj) {
+            txt.append("\tNome: "+arr.getNome()+"\t\t\t ID: "+ arr.getId() + "\n");
+            txt.append("\tEmail: "+arr.getEmail()+"\n");
+            txt.append("\tCampus: "+arr.getCampus()+"\n");
+            txt.append("\tCargo: "+arr.getCargo()+"\n");
+            txt.append("\tLogin: "+arr.getLogin()+"\n");
+            txt.append("\tSenha: "+arr.getSenha()+"\n");
+            txt.append("\tTipo Usuario: "+arr.getTipoUsuario()+"\n");
+            txt.append("\tData Criação: "+arr.getDtCriacao().format(fmt)+"\n");
+            txt.append("\tData Modificação: "+arr.getDtModificacao().format(fmt)+"\n\n");
+                
+         }
+        
+       return txt.toString();
+    }
+    
+    public String toStringMin(){
+        
+        StringBuilder txt = new StringBuilder();
+        
+        List<Servidor> obj = this.lista();
+        
+        txt.append("\t\t\t === Servidores === \n\n");
+        
+        for (Servidor servidor : obj) {
+            txt.append("\tNome Servidor: " + servidor.getNome() +"\t\t\t ID: " + servidor.getId() +"\n"); 
+        }
+        
+        return txt.toString();
+    }
+
+    
 }
+
