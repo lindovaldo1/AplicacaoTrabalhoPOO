@@ -39,7 +39,7 @@ public class CampusDAO {
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getAbreviacao());
             stmt.setInt(3, obj.getDuracaoAula());
-            stmt.setTimestamp(4, java.sql.Timestamp.valueOf(obj.getDtCriacao()));
+            stmt.setTimestamp(4, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setString(5, obj.getCidade());
             stmt.setString(6, obj.getBairro());
             stmt.setString(7, obj.getEndereco());

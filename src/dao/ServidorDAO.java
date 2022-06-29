@@ -27,7 +27,7 @@ public class ServidorDAO {
     
     CampusDAO campusdao;
     
-    public void getCampusDao(CampusDAO campus){
+    public ServidorDAO(CampusDAO campus){
         this.campusdao = campus;
     }
     
@@ -43,7 +43,8 @@ public class ServidorDAO {
             
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getEmail());
-            stmt.setInt(3, (int)(long)obj.getCampus());
+            long longCampus = obj.getCampus().getId();
+            stmt.setInt(3, (int)(long)longCampus);
             stmt.setInt(4, obj.getCargo());
             stmt.setString(5, obj.getLogin());
             stmt.setString(6, obj.getSenha());
@@ -81,7 +82,7 @@ public class ServidorDAO {
                   Long indice = rs.getLong("id");
                   String nome = rs.getString("nome");
                   String email = rs.getString("email");
-                  Long campus = rs.getLong("campus");
+                  long longCampus = rs.getLong("campus");
                   int cargo = rs.getInt("cargo");
                   String login = rs.getString("login");
                   String senha = rs.getString("senha");
@@ -94,7 +95,7 @@ public class ServidorDAO {
                   obj.setId(indice);
                   obj.setNome(nome);
                   obj.setEmail(email);
-                  obj.setCampus(campus);
+                  obj.setCampus(campusdao.buscaEspecifico(longCampus));
                   obj.setCargo(cargo);
                   obj.setLogin(login);
                   obj.setSenha(senha);
@@ -126,7 +127,7 @@ public class ServidorDAO {
                   Long indice = rs.getLong("id");
                   String nome = rs.getString("nome");
                   String email = rs.getString("email");
-                  Long campus = rs.getLong("campus");
+                  long longCampus = rs.getLong("campus");
                   int cargo = rs.getInt("cargo");
                   String login = rs.getString("login");
                   String senha = rs.getString("senha");
@@ -137,7 +138,8 @@ public class ServidorDAO {
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
                   
                   Servidor obj = new Servidor();
-
+                  Campus campus = campusdao.buscaEspecifico(longCampus);
+                  
                   obj.setId(indice);
                   obj.setNome(nome);
                   obj.setEmail(email);
@@ -192,7 +194,8 @@ public class ServidorDAO {
                   
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getEmail());
-            stmt.setLong(3, obj.getCampus());;
+            long longCampus = obj.getCampus().getId();
+            stmt.setLong(3, longCampus);;
             stmt.setInt(4, obj.getCargo());
             stmt.setString(5, obj.getLogin());
             stmt.setString(6, obj.getSenha());
@@ -233,7 +236,7 @@ public class ServidorDAO {
         for (Servidor arr : obj) {
             txt.append("\tNome: "+arr.getNome()+"\t\t\t ID: "+ arr.getId() + "\n");
             txt.append("\tEmail: "+arr.getEmail()+"\n");
-            txt.append("\tCampus: "+arr.getCampus()+"\n");
+            txt.append("\tCampus: "+arr.getCampus().toStringMin()+"\n");
             txt.append("\tCargo: "+arr.getCargo()+"\n");
             txt.append("\tLogin: "+arr.getLogin()+"\n");
             txt.append("\tSenha: "+arr.getSenha()+"\n");

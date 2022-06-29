@@ -19,6 +19,7 @@ import dao.ServidoresComissoesDAO;
 import extra.Espaco;
 import extra.Login;
 import java.util.Scanner;
+import model.Campus;
 import model.Servidor;
 import view.GUI;
 import view.UserAdmin;
@@ -35,15 +36,15 @@ public class Main {
     Espaco espaco = new Espaco();
     
     CampusDAO campusDao = new CampusDAO();
-    ServidorDAO servidorDao = new ServidorDAO();
-    CursoDAO cursoDao = new CursoDAO();
-    DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+    ServidorDAO servidorDao = new ServidorDAO(campusDao);
+    CursoDAO cursoDao = new CursoDAO(campusDao);
+    DisciplinaDAO disciplinaDao = new DisciplinaDAO(cursoDao);
     OfertaDisciplinaCursoDAO ofertaDao = new OfertaDisciplinaCursoDAO();
-    OrientacoesDAO orientacoesDao = new OrientacoesDAO();
-    AtividadesDAO atividadesDao = new AtividadesDAO();
+    AtividadesDAO atividadesDao = new AtividadesDAO(servidorDao);
+    OrientacoesDAO orientacoesDao = new OrientacoesDAO(servidorDao);
     ComissoesDAO comissaoDao = new ComissoesDAO();
     ServidoresComissoesDAO servidorComissaoDao = new ServidoresComissoesDAO();
-    AtaReunioesDAO ataReuniaoDao = new AtaReunioesDAO();
+    AtaReunioesDAO ataReuniaoDao = new AtaReunioesDAO(comissaoDao, servidorDao);
     AtaReunioesPresentesDAO ataReuniaoPresentesDao = new AtaReunioesPresentesDAO();
     
     public Main(){
@@ -59,8 +60,8 @@ public class Main {
 //            Servidor servidor = servidorDao.buscaLogin(login);
             
 
-//            login = gui.loginCacheAdm(); // Apagar Login Administrativo
-            login = gui.loginCacheUser(); //Apagar Login Usuario Comun
+            login = gui.loginCacheAdm(); // Apagar Login Administrativo
+//            login = gui.loginCacheUser(); //Apagar Login Usuario Comun
             
             Servidor servidor = servidorDao.buscaLogin(login);
             
@@ -101,7 +102,9 @@ public class Main {
                 nObj.setEmail(s.nextLine());
                 
                 System.out.println("Campus do servidor: "); 
-                nObj.setCampus(Long.parseLong(s.nextLine()));
+                System.out.println(campusDao.toStringMin());
+                Campus camp = campusDao.buscaEspecifico(Long.parseLong(s.nextLine()));
+                nObj.setCampus(camp);
                 
 
                 do {

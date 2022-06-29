@@ -25,6 +25,16 @@ import model.AtaReunioes;
  */
 public class AtaReunioesDAO {
     
+    ComissoesDAO comissoesDao;
+    ServidorDAO servidorDao;
+
+    public AtaReunioesDAO(ComissoesDAO comissoes, ServidorDAO servidor) {
+        this.comissoesDao = comissoes;
+        this.servidorDao = servidor;
+    }
+    
+    
+    
      public void adiciona(AtaReunioes obj){
         
          String sql = "insert into ata_reunioes"
@@ -34,10 +44,10 @@ public class AtaReunioesDAO {
         try (Connection connection = new ConnectionFactory().getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql)) {
             
-            stmt.setLong(1, obj.getComissao());
+            stmt.setLong(1, obj.getComissao().getId());
             stmt.setDate(2, java.sql.Date.valueOf(obj.getDtReuniao()));
             stmt.setString(3, obj.getAtaConteudo());
-            stmt.setLong(4, obj.getSecretario());
+            stmt.setLong(4, obj.getSecretario().getId());
 
             stmt.setTimestamp (5, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setTimestamp (6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
@@ -83,10 +93,10 @@ public class AtaReunioesDAO {
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
 
                   obj.setId(indice);
-                  obj.setComissao(comissao);
+                  obj.setComissao(comissoesDao.buscaEspecifico(comissao));
                   obj.setDtReuniao(dtReuniao);
                   obj.setAtaConteudo(conteudo);
-                  obj.setSecretario(servidor);
+                  obj.setSecretario(servidorDao.buscaEspecifico(servidor));
                   
                   obj.setDtCriacao(criacao);
                   obj.setDtModificacao(modificacao);
@@ -127,10 +137,10 @@ public class AtaReunioesDAO {
                   AtaReunioes obj = new AtaReunioes();
                   
                   obj.setId(indice);
-                  obj.setComissao(comissao);
+                  obj.setComissao(comissoesDao.buscaEspecifico(comissao));
                   obj.setDtReuniao(dtReuniao);
                   obj.setAtaConteudo(conteudo);
-                  obj.setSecretario(servidor);
+                  obj.setSecretario(servidorDao.buscaEspecifico(servidor));
                   
                   obj.setDtCriacao(criacao);
                   obj.setDtModificacao(modificacao);
@@ -176,10 +186,10 @@ public class AtaReunioesDAO {
                 PreparedStatement stmt = connection.prepareStatement(sql)) {
             
 
-            stmt.setLong(1, obj.getComissao());
+            stmt.setLong(1, obj.getComissao().getId());
             stmt.setDate(2, java.sql.Date.valueOf(obj.getDtReuniao()));
             stmt.setString(3, obj.getAtaConteudo());
-            stmt.setLong(4, obj.getSecretario());
+            stmt.setLong(4, obj.getSecretario().getId());
             stmt.setTimestamp(5, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setLong(6, obj.getId());
             
@@ -204,9 +214,9 @@ public class AtaReunioesDAO {
         
             for(AtaReunioes ataReunioes : obj){
                txt.append("\tAta Conteudo: " + ataReunioes.getAtaConteudo()+"\t\t\t ID: " + ataReunioes.getId() +"\n"); 
-               txt.append("\tComissao: " + ataReunioes.getComissao()+"\n"); 
+               txt.append("\tComissao: " + ataReunioes.getComissao().getComissao()+"\n"); 
                txt.append("\tData Reuniao: " + ataReunioes.getDtReuniao()+"\n"); 
-               txt.append("\tSecretario: " + ataReunioes.getSecretario()+"\n"); 
+               txt.append("\tSecretario: " + ataReunioes.getSecretario().getNome()+"\n"); 
                txt.append("\tData de Criação: " + ataReunioes.getDtCriacao().format(fmt) +"\n"); 
                txt.append("\tUltima Data de Moificação: " + ataReunioes.getDtModificacao().format(fmt) +"\n\n\n"); 
     

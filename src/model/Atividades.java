@@ -18,7 +18,7 @@ public class Atividades {
     private long id;
     private String descricao;
     private double horasSemanais;
-    private long servidor;
+    private Servidor servidor;
     private LocalDate dtInicio;
     private LocalDate dtFim;
     private LocalDateTime dtCriacao;
@@ -48,11 +48,11 @@ public class Atividades {
         this.horasSemanais = hSemanais;
     }
 
-    public long getServidor() {
+    public Servidor getServidor() {
         return servidor;
     }
 
-    public void setServidor(long servidor) {
+    public void setServidor(Servidor servidor) {
         this.servidor = servidor;
     }
 
@@ -90,20 +90,20 @@ public class Atividades {
 
     @Override
     public String toString() {
-        return "Atividades{" + "id=" + id + ", descricao=" + descricao + ", hSemanais=" + horasSemanais + ", servidor=" + servidor + ", dtInicio=" + dtInicio + ", dtFim=" + dtFim + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Atividades{" + "id=" + id + ", descricao=" + descricao + ", hSemanais=" + horasSemanais + ", servidor=" + servidor.getNome() + ", dtInicio=" + dtInicio + ", dtFim=" + dtFim + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 23 * hash + Objects.hashCode(this.descricao);
-        hash = 23 * hash + (int) (Double.doubleToLongBits(this.horasSemanais) ^ (Double.doubleToLongBits(this.horasSemanais) >>> 32));
-        hash = 23 * hash + (int) (this.servidor ^ (this.servidor >>> 32));
-        hash = 23 * hash + Objects.hashCode(this.dtInicio);
-        hash = 23 * hash + Objects.hashCode(this.dtFim);
-        hash = 23 * hash + Objects.hashCode(this.dtCriacao);
-        hash = 23 * hash + Objects.hashCode(this.dtModificacao);
+        hash = 79 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.descricao);
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.horasSemanais) ^ (Double.doubleToLongBits(this.horasSemanais) >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.servidor);
+        hash = 79 * hash + Objects.hashCode(this.dtInicio);
+        hash = 79 * hash + Objects.hashCode(this.dtFim);
+        hash = 79 * hash + Objects.hashCode(this.dtCriacao);
+        hash = 79 * hash + Objects.hashCode(this.dtModificacao);
         return hash;
     }
 
@@ -125,10 +125,10 @@ public class Atividades {
         if (Double.doubleToLongBits(this.horasSemanais) != Double.doubleToLongBits(other.horasSemanais)) {
             return false;
         }
-        if (this.servidor != other.servidor) {
+        if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.descricao, other.descricao)) {
+        if (!Objects.equals(this.servidor, other.servidor)) {
             return false;
         }
         if (!Objects.equals(this.dtInicio, other.dtInicio)) {
@@ -145,6 +145,8 @@ public class Atividades {
         }
         return true;
     }
+
+    
 
    
     

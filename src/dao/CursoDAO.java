@@ -24,7 +24,12 @@ import model.Curso;
  */
 public class CursoDAO {
     
-     
+    CampusDAO campusDao;
+    
+    public CursoDAO(CampusDAO campus) {
+        this.campusDao = campus;
+    } 
+    
     
     public void adiciona(Curso obj){
         
@@ -37,7 +42,7 @@ public class CursoDAO {
             
             stmt.setString(1, obj.getNome());
             stmt.setInt(2, (obj.getEstado()));
-            stmt.setInt(3, (int)(long)obj.getCampus());
+            stmt.setLong(3, obj.getCampus().getId());
             stmt.setDate(4, java.sql.Date.valueOf(obj.getAnoInicio()));
             stmt.setDate(5, java.sql.Date.valueOf(obj.getAnoTermino()));
             stmt.setTimestamp (6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
@@ -85,7 +90,7 @@ public class CursoDAO {
                   obj.setId(indice);
                   obj.setNome(nome);
                   obj.setEstado(estado);
-                  obj.setCampus(campus);
+                  obj.setCampus(campusDao.buscaEspecifico(campus));
                   obj.setAnoInicio(anoInicio);
                   obj.setAnoTermino(anoTermino);
                   obj.setDtCriacao(criacao);
@@ -130,7 +135,7 @@ public class CursoDAO {
                   obj.setId(indice);
                   obj.setNome(nome);
                   obj.setEstado(estado);
-                  obj.setCampus(campus);
+                  obj.setCampus(campusDao.buscaEspecifico(campus));
                   obj.setAnoInicio(anoInicio);
                   obj.setAnoTermino(anoTermino);
                   obj.setDtCriacao(criacao);
@@ -177,7 +182,7 @@ public class CursoDAO {
                   
             stmt.setString(1, obj.getNome());
             stmt.setInt(2, obj.getEstado());
-            stmt.setInt(3, (int)(long)obj.getCampus());
+            stmt.setLong(3, obj.getCampus().getId());
             stmt.setDate(4, java.sql.Date.valueOf(obj.getAnoInicio()));;
             stmt.setDate(5, java.sql.Date.valueOf(obj.getAnoTermino()));
             stmt.setTimestamp(6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
@@ -204,8 +209,8 @@ public class CursoDAO {
         List<Curso> obj = this.lista();
         
             for(Curso curso : obj){
-               txt.append("\tNome Campus: " + curso.getNome() +"\t\t\t ID: " + curso.getId() +"\n"); 
-               txt.append("\tCampus: " + curso.getCampus()+"\n"); 
+               txt.append("\tNome Curso: " + curso.getNome() +"\t\t\t ID: " + curso.getId() +"\n"); 
+               txt.append("\tCampus: " + curso.getCampus().toStringMin()+"\n"); 
                if(curso.getEstado() == 1){
                    txt.append("\tCampus: Ativo" +"\n"); 
                }else if(curso.getEstado() == 2){
@@ -236,7 +241,7 @@ public class CursoDAO {
         
             for(Curso curso : obj){
                txt.append("\tNome Curso: " + curso.getNome() +"\t\t\t ID: " + curso.getId() +"\n"); 
-               txt.append("\tCampus: " + curso.getCampus()+"\n"); 
+               txt.append("\tCampus: " + curso.getCampus().getNome()+"\n"); 
                txt.append("\tEstado: " + (curso.getEstado() == 1 ?  "ativo": "inativo")+"\n"); 
                txt.append("\tAno Inicio: " + curso.getAnoInicio()+"\n\n"); 
               ; 

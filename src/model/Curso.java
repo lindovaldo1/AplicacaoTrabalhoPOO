@@ -19,7 +19,7 @@ public class Curso {
     private long id;
     private String nome;
     private int estado = 0; // 1 = ativo, 0 = inativo
-    private Long campus;
+    private Campus campus;
     private LocalDate anoInicio;
     private LocalDate anoTermino;
     private LocalDateTime dtCriacao;
@@ -49,11 +49,11 @@ public class Curso {
         this.estado = estado;
     }
 
-    public Long getCampus() {
+    public Campus getCampus() {
         return campus;
     }
 
-    public void setCampus(Long campus) {
+    public void setCampus(Campus campus) {
         this.campus = campus;
     }
 
@@ -93,21 +93,25 @@ public class Curso {
     public String toString() {
         return "Curso{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + ", campus=" + campus + ", anoInicio=" + anoInicio + ", anoTermino=" + anoTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
+    
+
+    public String toStringMin() {
+        return "Curso{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + "\n campus=" + campus.toStringMin() + ", anoInicio=" + anoInicio + ", anoTermino=" + anoTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 29 * hash + Objects.hashCode(this.nome);
-        hash = 29 * hash + this.estado;
-        hash = 29 * hash + Objects.hashCode(this.campus);
-        hash = 29 * hash + Objects.hashCode(this.anoInicio);
-        hash = 29 * hash + Objects.hashCode(this.anoTermino);
-        hash = 29 * hash + Objects.hashCode(this.dtCriacao);
-        hash = 29 * hash + Objects.hashCode(this.dtModificacao);
+        int hash = 3;
+        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + this.estado;
+        hash = 97 * hash + Objects.hashCode(this.campus);
+        hash = 97 * hash + Objects.hashCode(this.anoInicio);
+        hash = 97 * hash + Objects.hashCode(this.anoTermino);
+        hash = 97 * hash + Objects.hashCode(this.dtCriacao);
+        hash = 97 * hash + Objects.hashCode(this.dtModificacao);
         return hash;
     }
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -147,6 +151,8 @@ public class Curso {
         }
         return true;
     }
+
+    
 
     
 }

@@ -25,7 +25,14 @@ import model.Atividades;
  * @author Lindovaldo
  */
 public class AtividadesDAO {
+
+    ServidorDAO servidorDao;
+    
+    public AtividadesDAO(ServidorDAO servidor) {
+    this.servidorDao = servidor;
+    }
       
+    
     public void adiciona(Atividades obj){
         
          String sql = "insert into atividades"
@@ -38,7 +45,7 @@ public class AtividadesDAO {
             
             stmt.setString(1, obj.getDescricao());
             stmt.setDouble(2, obj.getHorasSemanais());
-            stmt.setLong(3, obj.getServidor());
+            stmt.setLong(3, obj.getServidor().getId());
             stmt.setDate(4, java.sql.Date.valueOf(obj.getDtInicio()));
             stmt.setDate(5, java.sql.Date.valueOf(obj.getDtFim()));
            
@@ -88,7 +95,7 @@ public class AtividadesDAO {
                   obj.setId(indice);
                   obj.setDescricao(descricao);
                   obj.setHorasSemanais(horasSemanais);
-                  obj.setServidor(servidor);
+                  obj.setServidor(servidorDao.buscaEspecifico(servidor));
                   obj.setDtInicio(dtInicio);
                   obj.setDtFim(dtTermino);
                   
@@ -134,7 +141,7 @@ public class AtividadesDAO {
                   obj.setId(indice);
                   obj.setDescricao(descricao);
                   obj.setHorasSemanais(horasSemanais);
-                  obj.setServidor(servidor);
+                  obj.setServidor(servidorDao.buscaEspecifico(servidor));
                   obj.setDtInicio(dtInicio);
                   obj.setDtFim(dtTermino);
                   
@@ -182,7 +189,7 @@ public class AtividadesDAO {
 
             stmt.setString(1, obj.getDescricao());
             stmt.setDouble(2, obj.getHorasSemanais());
-            stmt.setLong(3, obj.getServidor());;
+            stmt.setLong(3, obj.getServidor().getId());;
             stmt.setDate(4, java.sql.Date.valueOf(obj.getDtInicio()));
             stmt.setDate(5, java.sql.Date.valueOf(obj.getDtFim()));
             stmt.setTimestamp(6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
@@ -210,7 +217,7 @@ public class AtividadesDAO {
             for(Atividades atividades : obj){
                txt.append("\tDescricao: " + atividades.getDescricao()+"\t\t\t ID: " + atividades.getId() +"\n"); 
                txt.append("\tHoras Semanais: " + atividades.getHorasSemanais()+"\n"); 
-               txt.append("\tServidor: " + atividades.getServidor()+"\n"); 
+               txt.append("\tServidor: " + atividades.getServidor().getNome()+"\n"); 
                txt.append("\tAno Inicio: " + atividades.getDtInicio()+"\n"); 
                txt.append("\tAno Termino: " + atividades.getDtFim().format(fmtAno)+"\n"); 
                txt.append("\tData de Criação: " + atividades.getDtCriacao().format(fmt) +"\n"); 
@@ -233,7 +240,7 @@ public class AtividadesDAO {
         
             for(Atividades atividades : obj){
                txt.append("\n\tDescricao: " + atividades.getDescricao()+"\t\t\t ID: " + atividades.getId() +"\n"); 
-               txt.append("\tServidor: " + atividades.getServidor()+"\n"); 
+               txt.append("\tServidor: " + atividades.getServidor().getNome()+"\n"); 
     
             }
   

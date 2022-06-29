@@ -18,7 +18,7 @@ public class Servidor {
     private long id;
     private String nome;
     private String email;
-    private Long campus;
+    private Campus campus;
     private int cargo; // 1 - pebtt, 2 - tae
     private String login;
     private String senha;
@@ -52,11 +52,11 @@ public class Servidor {
         this.email = email;
     }
 
-    public Long getCampus() {
+    public Campus getCampus() {
         return campus;
     }
 
-    public void setCampus(Long campus) {
+    public void setCampus(Campus campus) {
         this.campus = campus;
     }
 

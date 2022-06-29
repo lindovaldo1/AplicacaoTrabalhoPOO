@@ -19,7 +19,7 @@ public class Orientacoes {
     private int tipoOrientacao; // 1 - ensino, 2 - pesquisa, 3 - extensão, 4 - estagio, 5 - tcc, 6 - mestrado, 7 - doutorado
     private String nomeAluno;
     private double horasSemanais;
-    private long servidor;
+    private Servidor servidor;
     private LocalDate dtInicio;
     private LocalDate dtTermino;
     private LocalDateTime dtCriacao;
@@ -57,11 +57,11 @@ public class Orientacoes {
         this.horasSemanais = horasSemanais;
     }
 
-    public long getServidor() {
+    public Servidor getServidor() {
         return servidor;
     }
 
-    public void setServidor(long servidor) {
+    public void setServidor(Servidor servidor) {
         this.servidor = servidor;
     }
 
@@ -99,25 +99,24 @@ public class Orientacoes {
 
     @Override
     public String toString() {
-        return "Orientacoes{" + "id=" + id + ", tipoOrientacao=" + tipoOrientacao + ", nomeAluno=" + nomeAluno + ", horasSemanais=" + horasSemanais + ", servidor=" + servidor + ", dtInicio=" + dtInicio + ", dtTermino=" + dtTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Orientacoes{" + "id=" + id + ", tipoOrientacao=" + tipoOrientacao + ", nomeAluno=" + nomeAluno + ", horasSemanais=" + horasSemanais + ", servidor=" + servidor.getNome() + ", dtInicio=" + dtInicio + ", dtTermino=" + dtTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 83 * hash + this.tipoOrientacao;
-        hash = 83 * hash + Objects.hashCode(this.nomeAluno);
-        hash = 83 * hash + (int) (Double.doubleToLongBits(this.horasSemanais) ^ (Double.doubleToLongBits(this.horasSemanais) >>> 32));
-        hash = 83 * hash + (int) (this.servidor ^ (this.servidor >>> 32));
-        hash = 83 * hash + Objects.hashCode(this.dtInicio);
-        hash = 83 * hash + Objects.hashCode(this.dtTermino);
-        hash = 83 * hash + Objects.hashCode(this.dtCriacao);
-        hash = 83 * hash + Objects.hashCode(this.dtModificacao);
+        int hash = 5;
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 73 * hash + this.tipoOrientacao;
+        hash = 73 * hash + Objects.hashCode(this.nomeAluno);
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.horasSemanais) ^ (Double.doubleToLongBits(this.horasSemanais) >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.servidor);
+        hash = 73 * hash + Objects.hashCode(this.dtInicio);
+        hash = 73 * hash + Objects.hashCode(this.dtTermino);
+        hash = 73 * hash + Objects.hashCode(this.dtCriacao);
+        hash = 73 * hash + Objects.hashCode(this.dtModificacao);
         return hash;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -136,7 +135,7 @@ public class Orientacoes {
         if (this.tipoOrientacao != other.tipoOrientacao) {
             return false;
         }
-        if (this.horasSemanais != other.horasSemanais) {
+        if (Double.doubleToLongBits(this.horasSemanais) != Double.doubleToLongBits(other.horasSemanais)) {
             return false;
         }
         if (!Objects.equals(this.nomeAluno, other.nomeAluno)) {

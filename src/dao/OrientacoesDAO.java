@@ -18,17 +18,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Orientacoes;
+import model.Servidor;
 /**
  *
  * @author Lindovaldo
  */
 public class OrientacoesDAO {
     
+    ServidorDAO servidorDao;
+    
+    public OrientacoesDAO(ServidorDAO servidor) {
+        this.servidorDao = servidor;
+    }
+    
+    
+    
     public void adiciona(Orientacoes obj){
         
          String sql = "insert into orientacoes"
-                    + " (tipo_orientacao,nome_aluno,horas_semanais,data_inicio,data_termino,criacao,modificacao)"
-                    + " values (?,?,?,?,?,?,?)";
+                    + " (tipo_orientacao,nome_aluno,servidor,horas_semanais,data_inicio,data_termino,criacao,modificacao)"
+                    + " values (?,?,?,?,?,?,?,?)";
          
         try (Connection connection = new ConnectionFactory().getConnection();
             
@@ -36,12 +45,13 @@ public class OrientacoesDAO {
             
             stmt.setInt(1, obj.getTipoOrientacao());
             stmt.setString(2, obj.getNomeAluno());
-            stmt.setDouble(3, obj.getHorasSemanais());
-            stmt.setDate(4, java.sql.Date.valueOf(obj.getDtInicio()));
-            stmt.setDate(5, java.sql.Date.valueOf(obj.getDtTermino()));
+            stmt.setLong(3, obj.getServidor().getId());
+            stmt.setDouble(4, obj.getHorasSemanais());
+            stmt.setDate(5, java.sql.Date.valueOf(obj.getDtInicio()));
+            stmt.setDate(6, java.sql.Date.valueOf(obj.getDtTermino()));
            
-            stmt.setTimestamp (6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setTimestamp (7, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setTimestamp (8, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             
             stmt.execute();
             
@@ -72,6 +82,7 @@ public class OrientacoesDAO {
                   Long indice = rs.getLong("id");
                   int tipoOrientacao = rs.getInt("tipo_orientacao");
                   String nomeAluno = rs.getString("nome_aluno");
+                  Servidor servidor = servidorDao.buscaEspecifico(rs.getLong("servidor"));
                   double horasSemanais = rs.getDouble("horas_semanais");
                   Date dataInicio = rs.getDate("data_inicio");
                   LocalDate dtInicio = dataInicio.toLocalDate();
@@ -85,6 +96,7 @@ public class OrientacoesDAO {
                   obj.setId(indice);
                   obj.setTipoOrientacao(tipoOrientacao);
                   obj.setNomeAluno(nomeAluno);
+                  obj.setServidor(servidor);
                   obj.setHorasSemanais(horasSemanais);
                   obj.setDtInicio(dtInicio);
                   obj.setDtTermino(dtTermino);
@@ -116,6 +128,7 @@ public class OrientacoesDAO {
                  Long indice = rs.getLong("id");
                   int tipoOrientacao = rs.getInt("tipo_orientacao");
                   String nomeAluno = rs.getString("nome_aluno");
+                  Servidor servidor = servidorDao.buscaEspecifico(rs.getLong("servidor"));
                   double horasSemanais = rs.getDouble("horas_semanais");
                   Date dataInicio = rs.getDate("data_inicio");
                   LocalDate dtInicio = dataInicio.toLocalDate();
@@ -132,6 +145,7 @@ public class OrientacoesDAO {
                   obj.setId(indice);
                   obj.setTipoOrientacao(tipoOrientacao);
                   obj.setNomeAluno(nomeAluno);
+                  obj.setServidor(servidor);
                   obj.setHorasSemanais(horasSemanais);
                   obj.setDtInicio(dtInicio);
                   obj.setDtTermino(dtTermino);
@@ -168,6 +182,7 @@ public class OrientacoesDAO {
         String sql = "update orientacoes "
                    + "set tipo_orientacao = ?, "
                    + "nome_aluno = ?,"
+                   + "servidor  = ?,"
                    +"horas_semanais = ?,"
                    +"data_inicio = ?,"
                    +"data_termino = ?,"
@@ -179,11 +194,13 @@ public class OrientacoesDAO {
             
             stmt.setInt(1, obj.getTipoOrientacao());
             stmt.setString(2, obj.getNomeAluno());
-            stmt.setDouble(3, obj.getHorasSemanais());;
-            stmt.setDate(4, java.sql.Date.valueOf(obj.getDtInicio()));
-            stmt.setDate(5, java.sql.Date.valueOf(obj.getDtTermino()));
-            stmt.setTimestamp(6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
-            stmt.setLong(7, obj.getId());
+            stmt.setLong(3, obj.getServidor().getId());;
+            stmt.setDouble(4, obj.getHorasSemanais());;
+            
+            stmt.setDate(5, java.sql.Date.valueOf(obj.getDtInicio()));
+            stmt.setDate(6, java.sql.Date.valueOf(obj.getDtTermino()));
+            stmt.setTimestamp(7, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setLong(8, obj.getId());
             
             
             stmt.execute();
@@ -223,8 +240,8 @@ public class OrientacoesDAO {
                }else if( orientacoes.getTipoOrientacao() == 7){
                    txt.append("\tTipo Orientacao: doutorado"+"\n"); 
                }               
+               txt.append("\tServidor: " + orientacoes.getServidor().getNome()+"\n"); 
                txt.append("\tHoras Semanais: " + orientacoes.getHorasSemanais()+"\n"); 
-               txt.append("\tServidor: " + orientacoes.getServidor()+"\n"); 
                txt.append("\tAno Inicio: " + orientacoes.getDtInicio().format(fmtAno)+"\n"); 
                txt.append("\tAno Termino: " + orientacoes.getDtTermino().format(fmtAno)+"\n"); 
                txt.append("\tData de Criacao: " + orientacoes.getDtCriacao().format(fmtAno)+"\n"); 
@@ -248,7 +265,7 @@ public class OrientacoesDAO {
         
             for(Orientacoes orientacoes : obj){
                txt.append("\n\tNome Aluno: " + orientacoes.getNomeAluno()+"\t\t\t ID: " + orientacoes.getId() +"\n"); 
-               txt.append("\tNome Servidor: " + orientacoes.getServidor()+"\n"); 
+               txt.append("\tNome Servidor: " + orientacoes.getServidor().getNome()+"\n"); 
     
             }
   

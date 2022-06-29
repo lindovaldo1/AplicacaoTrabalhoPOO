@@ -8,7 +8,6 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -191,17 +190,16 @@ public class Campus {
         StringBuilder txt = new StringBuilder();
         
         
-        txt.append("\tNome Curso: " + this.getNome() +"\t\t\t ID: " + this.getId() +"\n"); 
-        txt.append("\tAbreviação Curso: " + this.getAbreviacao() +"\n"); 
+        txt.append("\tNome Campus: " + this.getNome() +"\t\t\t ID: " + this.getId() +"\n"); 
+        txt.append("\tAbreviação Campus: " + this.getAbreviacao() +"\n"); 
         txt.append("\tDuração das Aulas no Campus: " + this.getDuracaoAula() +"\n"); 
         txt.append("\tData de Criação: " + this.getDtCriacao().format(fmt) +"\n"); 
         txt.append("\tCidade do Campus: " + this.getCidade() +"\n"); 
         txt.append("\tBairro do Campus: " + this.getBairro() +"\n"); 
         txt.append("\tEndereço do Campus: " + this.getEndereco() +"\n"); 
         txt.append("\tCep do Campus: " + this.getCep() +"\n"); 
-        txt.append("\tUltima Data de Moificação: " + this.getDtModificacao().format(fmt) +"\n\n"); 
-            
-  
+        txt.append("\tUltima Data de Modificação: " + this.getDtModificacao().format(fmt) +"\n\n"); 
+
         return txt.toString();
     }
     

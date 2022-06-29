@@ -18,7 +18,7 @@ public class Disciplina {
     private String nome;
     private double cargaHoraria;
     private int periodicidade; // 1 - semestral, 2 - anual
-    private Long curso;
+    private Curso curso;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtModificacao; 
 
@@ -54,11 +54,11 @@ public class Disciplina {
         this.periodicidade = periodicidade;
     }
 
-    public Long getCurso() {
+    public Curso getCurso() {
         return curso;
     }
 
-    public void setCurso(Long curso) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
@@ -80,24 +80,22 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina{" + "id=" + id + ", nome=" + nome + ", cargaHoraria=" + cargaHoraria + ", periodicidade=" + periodicidade + ", curso=" + curso + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Disciplina{" + "id=" + id + ", nome=" + nome + ", cargaHoraria=" + cargaHoraria + ", periodicidade=" + periodicidade + "\n curso=" + curso.toStringMin() + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
 
-    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.cargaHoraria) ^ (Double.doubleToLongBits(this.cargaHoraria) >>> 32));
-        hash = 97 * hash + this.periodicidade;
-        hash = 97 * hash + Objects.hashCode(this.curso);
-        hash = 97 * hash + Objects.hashCode(this.dtCriacao);
-        hash = 97 * hash + Objects.hashCode(this.dtModificacao);
+        int hash = 5;
+        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + (int) (Double.doubleToLongBits(this.cargaHoraria) ^ (Double.doubleToLongBits(this.cargaHoraria) >>> 32));
+        hash = 53 * hash + this.periodicidade;
+        hash = 53 * hash + Objects.hashCode(this.curso);
+        hash = 53 * hash + Objects.hashCode(this.dtCriacao);
+        hash = 53 * hash + Objects.hashCode(this.dtModificacao);
         return hash;
     }
 
-  
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -113,7 +111,7 @@ public class Disciplina {
         if (this.id != other.id) {
             return false;
         }
-        if (this.cargaHoraria != other.cargaHoraria) {
+        if (Double.doubleToLongBits(this.cargaHoraria) != Double.doubleToLongBits(other.cargaHoraria)) {
             return false;
         }
         if (this.periodicidade != other.periodicidade) {
@@ -133,6 +131,8 @@ public class Disciplina {
         }
         return true;
     }
+
+    
     
     
 }

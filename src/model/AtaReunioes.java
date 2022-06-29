@@ -16,10 +16,10 @@ import java.util.Objects;
 public class AtaReunioes {
     
     private long id;
-    private long comissao;
+    private Comissoes comissao;
     private LocalDate dtReuniao;
     private String ataConteudo;
-    private long secretario;
+    private Servidor secretario;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtModificacao;
 
@@ -31,11 +31,11 @@ public class AtaReunioes {
         this.id = id;
     }
 
-    public long getComissao() {
+    public Comissoes getComissao() {
         return comissao;
     }
 
-    public void setComissao(long comissao) {
+    public void setComissao(Comissoes comissao) {
         this.comissao = comissao;
     }
 
@@ -55,11 +55,11 @@ public class AtaReunioes {
         this.ataConteudo = ataConteudo;
     }
 
-    public long getSecretario() {
+    public Servidor getSecretario() {
         return secretario;
     }
 
-    public void setSecretario(long secretario) {
+    public void setSecretario(Servidor secretario) {
         this.secretario = secretario;
     }
 
@@ -81,19 +81,19 @@ public class AtaReunioes {
 
     @Override
     public String toString() {
-        return "AtaReunioes{" + "id=" + id + ", comissao=" + comissao + ", dtReuniao=" + dtReuniao + ", ataConteudo=" + ataConteudo + ", secretario=" + secretario + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "AtaReunioes{" + "id=" + id + ", comissao=" + comissao.getComissao() + ", dtReuniao=" + dtReuniao + ", ataConteudo=" + ataConteudo + ", secretario=" + secretario.getNome() + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 17 * hash + (int) (this.comissao ^ (this.comissao >>> 32));
-        hash = 17 * hash + Objects.hashCode(this.dtReuniao);
-        hash = 17 * hash + Objects.hashCode(this.ataConteudo);
-        hash = 17 * hash + (int) (this.secretario ^ (this.secretario >>> 32));
-        hash = 17 * hash + Objects.hashCode(this.dtCriacao);
-        hash = 17 * hash + Objects.hashCode(this.dtModificacao);
+        int hash = 3;
+        hash = 79 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.comissao);
+        hash = 79 * hash + Objects.hashCode(this.dtReuniao);
+        hash = 79 * hash + Objects.hashCode(this.ataConteudo);
+        hash = 79 * hash + Objects.hashCode(this.secretario);
+        hash = 79 * hash + Objects.hashCode(this.dtCriacao);
+        hash = 79 * hash + Objects.hashCode(this.dtModificacao);
         return hash;
     }
 
@@ -112,16 +112,16 @@ public class AtaReunioes {
         if (this.id != other.id) {
             return false;
         }
-        if (this.comissao != other.comissao) {
-            return false;
-        }
-        if (this.secretario != other.secretario) {
-            return false;
-        }
         if (!Objects.equals(this.ataConteudo, other.ataConteudo)) {
             return false;
         }
+        if (!Objects.equals(this.comissao, other.comissao)) {
+            return false;
+        }
         if (!Objects.equals(this.dtReuniao, other.dtReuniao)) {
+            return false;
+        }
+        if (!Objects.equals(this.secretario, other.secretario)) {
             return false;
         }
         if (!Objects.equals(this.dtCriacao, other.dtCriacao)) {
@@ -132,6 +132,8 @@ public class AtaReunioes {
         }
         return true;
     }
+
+    
     
     
     

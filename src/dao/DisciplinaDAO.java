@@ -15,13 +15,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import model.Curso;
 import model.Disciplina;
 /**
  *
  * @author Lindovaldo
  */
 public class DisciplinaDAO {
+
+    CursoDAO cursoDao;
+        
+    public DisciplinaDAO(CursoDAO curso) {
+        this.cursoDao = curso;
+    }
+    
+    
     
     public void adiciona(Disciplina obj){
         
@@ -36,7 +43,7 @@ public class DisciplinaDAO {
             stmt.setString(1, obj.getNome());
             stmt.setDouble(2, obj.getCargaHoraria());
             stmt.setInt(3, obj.getPeriodicidade());
-            stmt.setLong(4, obj.getCurso());
+            stmt.setLong(4, obj.getCurso().getId());
             stmt.setTimestamp (5, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setTimestamp (6, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             
@@ -81,7 +88,7 @@ public class DisciplinaDAO {
                   obj.setNome(nome);
                   obj.setCargaHoraria(cargaHoraria);
                   obj.setPeriodicidade(periodicidade);
-                  obj.setCurso(curso);
+                  obj.setCurso(cursoDao.buscaEspecifico(curso));
                   
                   obj.setDtCriacao(criacao);
                   obj.setDtModificacao(modificacao);
@@ -124,7 +131,7 @@ public class DisciplinaDAO {
                   obj.setNome(nome);
                   obj.setCargaHoraria(cargaHoraria);
                   obj.setPeriodicidade(periodicidade);
-                  obj.setCurso(curso);
+                  obj.setCurso(cursoDao.buscaEspecifico(curso));
                   
                   obj.setDtCriacao(criacao);
                   obj.setDtModificacao(modificacao);
@@ -202,7 +209,7 @@ public class DisciplinaDAO {
                }else if(disciplina.getPeriodicidade()== 2){
                    txt.append("\tPeriodicidade: Anual" +"\n");
                }
-               txt.append("\tCurso: " + disciplina.getCurso()+"\n"); 
+               txt.append("\tCurso: " + disciplina.getCurso().getNome()+"\n"); 
                txt.append("\tData de Criacao: " + disciplina.getDtCriacao().format(fmtAno)+"\n"); 
                txt.append("\tUltima Data de Moificação: " + disciplina.getDtModificacao().format(fmt) +"\n\n\n"); 
                
@@ -222,7 +229,7 @@ public class DisciplinaDAO {
 
         for(Disciplina disciplina : obj){
            txt.append("\n\tNome Disciplina: " + disciplina.getNome() +"\t\t\t ID: " + disciplina.getId() +"\n"); 
-           txt.append("\tCampus: " + disciplina.getCurso()+"\n"); 
+           txt.append("\tCampus: " + disciplina.getCurso().getNome()+"\n"); 
 
         }
   
