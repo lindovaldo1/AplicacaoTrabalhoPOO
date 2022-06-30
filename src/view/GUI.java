@@ -45,6 +45,31 @@ public class GUI {
         return Integer.parseInt(s.nextLine());
         
     }
+    
+    public int escolhaComum()
+    {        
+        StringBuilder menu = new StringBuilder();
+        
+        menu.append("\nTRABALHO DE PROGRAMAÇÃO ORIENTADA A OBJETOS");
+        menu.append("\n01 - Campus");
+        menu.append("\n02 - Servidores");
+        menu.append("\n03 - Curso");
+        menu.append("\n04 - Disciplina");
+        menu.append("\n05 - Oferta");
+        menu.append("\n06 - Orientacao");
+        menu.append("\n07 - Atividades");
+        menu.append("\n08 - Comissões");
+        menu.append("\n09 - Servidores Comissões");
+        menu.append("\n10 - Ata das Reuniões");
+        menu.append("\n11 - Ata reunioes presentes");
+        menu.append("\n12 - Sair");
+        menu.append("\n\nEscolha:>_");
+        
+        System.out.println(menu.toString());
+                    
+        return Integer.parseInt(s.nextLine());
+        
+    }
         
     public int daoAdm()
     {

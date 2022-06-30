@@ -167,7 +167,8 @@ public class ServidoresComissoesDAO {
 
            stmt.setLong(1, id);
            stmt.execute();
-
+           
+           System.out.println("Removido com sucesso");
        } catch (SQLException e) {
            throw new RuntimeException("Erro, elemento não removido do banco. RuntimeException");
        }

@@ -261,6 +261,7 @@ public class UserAdmin {
 
                 case 2:
                     espaco.darEspaco();
+                    System.out.println(obj.toStringMin());
                     System.out.println("Informe o identificador do Campus para buscar: ");                    
                     Campus r = obj.buscaEspecifico(Long.parseLong(s.nextLine()));
                     espaco.darEspaco();
@@ -289,6 +290,7 @@ public class UserAdmin {
 
                 case 4:
                     espaco.darEspaco();
+                    System.out.println(obj.toStringMin());
                     System.out.println("Informe o nome do identificador para remover: ");                    
                     obj.remove(Long.parseLong(s.nextLine()));
                     break;
@@ -390,35 +392,35 @@ public class UserAdmin {
                 case 5:
                     espaco.darEspaco();
 
-                    Servidor vObj = new Servidor();
-                    do {
-                        System.out.println(obj.toStringMin());
-                        System.out.println("Informe o identificador do Servidor para alterar: ");
-                        vObj = servidorDao.buscaEspecifico(Long.parseLong(s.nextLine()));
-                        System.out.println((vObj != null) ? vObj.toString() : "Servidor não encontrado.");
-                    } while(vObj == null);
-
-                    Servidor aObj = new Servidor();
+                    Servidor alterar = new Servidor();
+                    
+                    System.out.println(obj.toStringMin());
+                    System.out.println("Informe o identificador do Servidor para alterar: ");
+                    alterar.setId(Long.parseLong(s.nextLine()));
+;
                     System.out.println("Nome do servidor: ");
-                    aObj.setNome(s.nextLine());
+                    alterar.setNome(s.nextLine());
+                    
                     System.out.println("E-mail do servidor: ");
-                    aObj.setEmail(s.nextLine());
-                    do {
-                        System.out.println(campusDao.toStringMin());
-                        System.out.println("Campus do servidor: ");
-                        aObj.setCampus(campusDao.buscaEspecifico(Long.parseLong(s.nextLine())));
-                    } while(aObj.getCampus() == null);
-                    do {
-                        System.out.println("Cargo do servidor <1 - Professor> <2 - Tecnico Administrativo>: ");
-                        aObj.setCargo(Integer.parseInt(s.nextLine()));
-                    } while(aObj.getCargo() != 1 && aObj.getCargo() != 2);
+                    alterar.setEmail(s.nextLine());
+                    
+                    System.out.println(campusDao.toStringMin());
+                    System.out.println("Campus do servidor: ");
+                    alterar.setCampus(campusDao.buscaEspecifico(Long.parseLong(s.nextLine())));
+
+                    System.out.println("Cargo do servidor <1 - Professor> <2 - Tecnico Administrativo>: ");
+                    alterar.setCargo(Integer.parseInt(s.nextLine()));
+                        
                     System.out.println("Login do servidor: ");
-                    aObj.setLogin(s.nextLine());
+                    alterar.setLogin(s.nextLine());
+                    
                     System.out.println("Senha do servidor: ");
-                    aObj.setSenha(s.nextLine());
+                    alterar.setSenha(s.nextLine());
+                    
                     System.out.println("Tipo do usuário <1 - Administrador> <2 - Comum>: ");
-                    aObj.setTipoUsuario(Integer.parseInt(s.nextLine()));
-                    obj.altera(aObj);
+                    alterar.setTipoUsuario(Integer.parseInt(s.nextLine()));
+                    
+                    obj.altera(alterar);
                     break;
 
                 case 6:
@@ -495,6 +497,7 @@ public class UserAdmin {
                         System.out.println("Nome do Curso:");
                         aObj.setNome(s.nextLine());
                         do {
+                            System.out.println(campusDao.toStringMin());
                             System.out.println("Informe o Campus do curso: ");
                             aObj.setCampus(campusDao.buscaEspecifico(Long.parseLong(s.nextLine())));
                         } while(aObj.getCampus() == null);
@@ -727,7 +730,7 @@ public class UserAdmin {
                     case 3:
                         espaco.darEspaco();                    
                         Comissoes nObj = new Comissoes();
-
+                        
                         System.out.println("Informe o nome da Comissao: ");
                         nObj.setComissao(s.nextLine());
 

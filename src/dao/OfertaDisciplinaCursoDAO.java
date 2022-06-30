@@ -119,7 +119,7 @@ public class OfertaDisciplinaCursoDAO {
 
 
           ArrayList<OfertaDisciplinaCurso> arr = new ArrayList<>();
-          OfertaDisciplinaCurso obj = new OfertaDisciplinaCurso();
+          
           
           try (Connection connection = new ConnectionFactory().getConnection();
                   PreparedStatement stmt = connection.prepareStatement(sql);
@@ -139,7 +139,9 @@ public class OfertaDisciplinaCursoDAO {
                   LocalDateTime criacao = criacaoTimestamp.toLocalDateTime();
                   Timestamp modificacaoTimestamp = rs.getTimestamp("modificacao");
                   LocalDateTime modificacao= modificacaoTimestamp.toLocalDateTime();
-
+                  
+                  OfertaDisciplinaCurso obj = new OfertaDisciplinaCurso();
+                  
                   obj.setId(indice);
                   obj.setCurso(cursoDao.buscaEspecifico(curso));
                   obj.setDisciplina(disciplinaDao.buscaEspecifico(disciplina));
@@ -151,7 +153,7 @@ public class OfertaDisciplinaCursoDAO {
                   obj.setDtCriacao(criacao);
                   obj.setDtModificacao(modificacao);
                   
-                          
+                         
                   arr.add(obj);
 
               }

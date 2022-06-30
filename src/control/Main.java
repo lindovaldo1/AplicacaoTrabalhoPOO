@@ -60,8 +60,8 @@ public class Main {
 //            Servidor servidor = servidorDao.buscaLogin(login);
             
 
-//            login = gui.loginCacheAdm(); // Apagar Login Administrativo
-            login = gui.loginCacheUser(); //Apagar Login Usuario Comun
+            login = gui.loginCacheAdm(); // Apagar Login Administrativo
+//            login = gui.loginCacheUser(); //Apagar Login Usuario Comun
             
             Servidor servidor = servidorDao.buscaLogin(login);
             

@@ -1,20 +1,12 @@
 -------UserComum----------
+ok
 
-subMenuAtaReuniaoPresentes
-subMenuServidorComissao
-subMenuOferta
+
 
 
 
 ------UserAdministrativo-----
-SubMenuServidor			       testas
-subMenuCurso 			       testas
 
-
-subMenuOferta        			fazer
-SubMenuOrientacao			fazer
-SubMenuAtaReunioesPresentes		fazer
-subMenuServidorComissao			fazer
-
+campus			se estiver sendo usado não apaga
 
 relatorios

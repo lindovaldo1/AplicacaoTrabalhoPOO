@@ -218,7 +218,7 @@ public class AtividadesDAO {
                txt.append("\tDescricao: " + atividades.getDescricao()+"\t\t\t ID: " + atividades.getId() +"\n"); 
                txt.append("\tHoras Semanais: " + atividades.getHorasSemanais()+"\n"); 
                txt.append("\tServidor: " + atividades.getServidor().getNome()+"\n"); 
-               txt.append("\tAno Inicio: " + atividades.getDtInicio()+"\n"); 
+               txt.append("\tAno Inicio: " + atividades.getDtInicio().format(fmtAno)+"\n"); 
                txt.append("\tAno Termino: " + atividades.getDtFim().format(fmtAno)+"\n"); 
                txt.append("\tData de Criação: " + atividades.getDtCriacao().format(fmt) +"\n"); 
                txt.append("\tUltima Data de Moificação: " + atividades.getDtModificacao().format(fmt) +"\n\n\n"); 

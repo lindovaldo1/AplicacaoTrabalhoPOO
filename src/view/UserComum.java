@@ -80,7 +80,7 @@ public class UserComum {
         espaco.darEspaco();
 
         do {
-            escolha = gui.escolha();
+            escolha = gui.escolhaComum();
             switch(escolha) {
 
                 case 1:
@@ -138,98 +138,8 @@ public class UserComum {
                     subMenuAtaReuniaoPresentes(ataReuniaoPresentesDao);
                     break;   
                    
-                case 12:
-                    espaco.darEspaco();
-                    
-                    System.out.println("\t\tRelatorio Atas das Reuniões\n\n");
-                    
-                    System.out.print("\tInforme o nome da comissao: ");
-//                    Comissao comissao = ComissaoDAO.busca(s.nextLine());
-                    
-                    System.out.print("\tInforme a data de inicio para filtrar: ");
-//                    LocalDate inicio = LocalDate.parse(s.nextLine(), fmt);
-                    
-                    System.out.print("\tInforme a data de fim para filtrar: ");
-//                    LocalDate fim = LocalDate.parse(s.nextLine(), fmt);
-                    
-//                    System.out.println((ataReuniaoDao.relatorioPeriodo(comissao, inicio, fim) != null) ? ataReuniaoDao.relatorioPeriodo(comissao, inicio, fim) : "Não tem nenhuma informação para gerar um relatorio"); 
-                    break;
-                
-                    
-                case 13:
-                    espaco.darEspaco();
-                    System.out.println("\t\t Relatorio das Informações de Aulas\n\n");
-                    
-                    System.out.print("\tInforme o nome do campus: ");
-//                    Campus campus = CampusDAO.busca(s.nextLine());
-                    
-//                    System.out.println((ofertaDao.relatorioInfoAulas(campus) != null) ? ofertaDao.relatorioInfoAulas(campus) : "Não tem nenhuma informação para gerar um relatorio"); 
-                    break;
-                    
-                case 14:
-                    espaco.darEspaco();
-                    StringBuilder rel = new StringBuilder();                                        
-//                    Servidor serv = new Servidor();
-                    int cont = 0;
 
-//                    do {
-                        System.out.println("Informe o nome do Servidor: ");
-//                        serv = ServidorDAO.busca(s.nextLine());
-//                    } while(serv == null);
-                    
-//                    Oferta oferta[] = new Oferta[10];
-//                    for(int i = 0; i < OfertaDAO.arr.length; i++) {
-//                        if(OfertaDAO.arr[i] != null) {
-//                            if(OfertaDAO.arr[i].getProfessor().getId() == serv.getId()) {
-//                                oferta[cont] = OfertaDAO.arr[i];
-//                                cont++;
-//                            }
-//                        }
-//                    }
-                    
-//                    cont = 0;
-//                    Comissao comiss[] = new Comissao[10];
-//                    for(int i = 0; i < ComissaoDAO.arr.length; i++) {
-//                        if(ComissaoDAO.arr[i] != null) {
-//                            for(int j = 0; j < ServidorComissaoDAO.arr.length; j++) {
-//                                if(ServidorComissaoDAO.arr[j] != null) {
-//                                    if(ComissaoDAO.arr[i].getComissao().equals(ServidorComissaoDAO.arr[j].getComissao()) && 
-//                                            ServidorComissaoDAO.arr[j].getServidor() == serv) {
-//                                        comiss[cont] = ComissaoDAO.arr[i];
-                                        cont++;                            
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-                    
-//                    cont = 0;
-//                    Atividade ativid[] = new Atividade[10];
-//                    for(int i = 0; i < AtividadeDAO.arr.length; i++) {
-//                        if(AtividadeDAO.arr[i] != null) {
-//                            if(AtividadeDAO.arr[i].getServidor() == serv) {
-//                                ativid[cont] = AtividadeDAO.arr[i];
-//                                cont++;
-//                            }
-//                        }
-//                    }
-//                    
-//                    cont = 0;
-//                    Orientacao ori[] = new Orientacao[10];
-//                    for(int i = 0; i < OrientacaoDAO.arr.length; i++) {
-//                        if(OrientacaoDAO.arr[i] != null) {
-//                            if(OrientacaoDAO.arr[i].getServidor() == serv) {
-//                                ori[cont] = OrientacaoDAO.arr[i];
-//                                cont++;
-//                            }
-//                        }
-//                    }
-//                    
-//                    rel = servidorDao.relatorioTrabalho(serv, oferta, comiss, ativid, ori);
-//                    System.out.println(rel);
-                    break;
-                    
-                case 15:
+                case 12:
                     break;
                     
                 default:
@@ -237,7 +147,7 @@ public class UserComum {
                     System.out.println("Escolha invalida.");
                     break;
             }
-        }while(escolha != 15);
+        }while(escolha != 12);
     }
     
     

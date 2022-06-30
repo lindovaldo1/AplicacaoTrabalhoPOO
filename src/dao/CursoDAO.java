@@ -216,7 +216,7 @@ public class CursoDAO {
                }else if(curso.getEstado() == 2){
                    txt.append("\tCampus: Inativo" +"\n"); 
                }
-               txt.append("\tAno Inicio: " + curso.getAnoInicio()+"\n"); 
+               txt.append("\tAno Inicio: " + curso.getAnoInicio().format(fmtAno)+"\n"); 
                txt.append("\tAno Termino: " + curso.getAnoTermino().format(fmtAno)+"\n"); 
                txt.append("\tData de Criação: " + curso.getDtCriacao().format(fmt) +"\n"); 
                txt.append("\tData de Criacao: " + curso.getDtCriacao().format(fmtAno)+"\n"); 

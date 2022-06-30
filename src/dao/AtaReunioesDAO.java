@@ -215,7 +215,7 @@ public class AtaReunioesDAO {
             for(AtaReunioes ataReunioes : obj){
                txt.append("\tAta Conteudo: " + ataReunioes.getAtaConteudo()+"\t\t\t ID: " + ataReunioes.getId() +"\n"); 
                txt.append("\tComissao: " + ataReunioes.getComissao().getComissao()+"\n"); 
-               txt.append("\tData Reuniao: " + ataReunioes.getDtReuniao()+"\n"); 
+               txt.append("\tData Reuniao: " + ataReunioes.getDtReuniao().format(fmtAno)+"\n"); 
                txt.append("\tSecretario: " + ataReunioes.getSecretario().getNome()+"\n"); 
                txt.append("\tData de Criação: " + ataReunioes.getDtCriacao().format(fmt) +"\n"); 
                txt.append("\tUltima Data de Moificação: " + ataReunioes.getDtModificacao().format(fmt) +"\n\n\n"); 
