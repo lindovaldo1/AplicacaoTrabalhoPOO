@@ -91,12 +91,12 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + ", campus=" + campus + ", anoInicio=" + anoInicio + ", anoTermino=" + anoTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Curso{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + ", campus=" + campus.getNome() + ", anoInicio=" + anoInicio + ", anoTermino=" + anoTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}'+"\n";
     }
     
 
     public String toStringMin() {
-        return "Curso{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + "\n campus=" + campus.toStringMin() + ", anoInicio=" + anoInicio + ", anoTermino=" + anoTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Curso{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + "\n campus=" + campus.getNome() + ", anoInicio=" + anoInicio + ", anoTermino=" + anoTermino + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}'+"\n";
     }
 
     @Override

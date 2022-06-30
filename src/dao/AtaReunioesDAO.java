@@ -236,7 +236,8 @@ public class AtaReunioesDAO {
         List<AtaReunioes> obj = this.lista();
         
             for(AtaReunioes ataReunioes : obj){
-               txt.append("\tData de Criacao: " + ataReunioes.getDtCriacao().format(fmtAno)+"\t\t\t ID: " + ataReunioes.getId() +"\n");  
+               txt.append("\tData da Reuniao: " + ataReunioes.getDtReuniao().format(fmtAno)+"\t\t\t ID: " + ataReunioes.getId() +"\n");  
+               txt.append("\tNome comissão: "+ataReunioes.getComissao().getComissao()+"\n");
             }
   
         return txt.toString();

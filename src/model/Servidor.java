@@ -110,7 +110,7 @@ public class Servidor {
 
     @Override
     public String toString() {
-        return "Servidor{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", campus=" + campus + ", cargo=" + cargo + ", login=" + login + ", senha=" + senha + ", tipoUsuario=" + tipoUsuario + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Servidor{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", campus=" + campus.toStringMin() + ", cargo=" + cargo + ", login=" + login + ", senha=" + senha + ", tipoUsuario=" + tipoUsuario + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
     
     @Override

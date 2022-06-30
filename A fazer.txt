@@ -4,19 +4,17 @@ subMenuAtaReuniaoPresentes
 subMenuServidorComissao
 subMenuOferta
 
-Relatorios
 
 
 ------UserAdministrativo-----
 SubMenuServidor			       testas
 subMenuCurso 			       testas
 
-subMenuOferta        			fazer
-subMenuComissao				fazer
-subMenuServidorComissao			fazer
-SubMenuAtaReunioesPresentes		fazer
-SubMenuAtaReuniao			fazer
-SubMenuOrientacao			fazer
-subMenuAtividade			fazer
 
-Tudo
+subMenuOferta        			fazer
+SubMenuOrientacao			fazer
+SubMenuAtaReunioesPresentes		fazer
+subMenuServidorComissao			fazer
+
+
+relatorios

@@ -80,7 +80,7 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina{" + "id=" + id + ", nome=" + nome + ", cargaHoraria=" + cargaHoraria + ", periodicidade=" + periodicidade + "\n curso=" + curso.toStringMin() + ", dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
+        return "Disciplina{" + "id=" + id + ", nome=" + nome + ", cargaHoraria=" + cargaHoraria + ", periodicidade=" + periodicidade + "\n curso=" + curso.getNome() + ",\n dtCriacao=" + dtCriacao + ", dtModificacao=" + dtModificacao + '}';
     }
 
     @Override

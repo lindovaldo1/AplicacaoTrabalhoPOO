@@ -37,7 +37,7 @@ public class ComissoesDAO {
             
             stmt.setString(1, obj.getComissao());
             stmt.setDouble(2, obj.gethSemanais());
-            stmt.setDate(3, java.sql.Date.valueOf(obj.getDtInicio()));
+            stmt.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
             stmt.setDate(4, java.sql.Date.valueOf(obj.getDtFim()));
             stmt.setInt(5, obj.getEstado());
             

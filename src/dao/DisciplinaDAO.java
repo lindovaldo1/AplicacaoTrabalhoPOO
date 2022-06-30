@@ -177,7 +177,7 @@ public class DisciplinaDAO {
             stmt.setString(1, obj.getNome());
             stmt.setDouble(2, obj.getCargaHoraria());
             stmt.setInt(3, obj.getPeriodicidade());
-            stmt.setTimestamp(4, java.sql.Timestamp.valueOf(obj.getDtCriacao()));
+            stmt.setLong(4, obj.getCurso().getId());
             stmt.setTimestamp(5, java.sql.Timestamp.valueOf(LocalDateTime.now()));
             stmt.setLong(6, obj.getId());
             

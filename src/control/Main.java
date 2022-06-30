@@ -39,13 +39,13 @@ public class Main {
     ServidorDAO servidorDao = new ServidorDAO(campusDao);
     CursoDAO cursoDao = new CursoDAO(campusDao);
     DisciplinaDAO disciplinaDao = new DisciplinaDAO(cursoDao);
-    OfertaDisciplinaCursoDAO ofertaDao = new OfertaDisciplinaCursoDAO();
+    OfertaDisciplinaCursoDAO ofertaDao = new OfertaDisciplinaCursoDAO(disciplinaDao, servidorDao, cursoDao);
     AtividadesDAO atividadesDao = new AtividadesDAO(servidorDao);
     OrientacoesDAO orientacoesDao = new OrientacoesDAO(servidorDao);
     ComissoesDAO comissaoDao = new ComissoesDAO();
-    ServidoresComissoesDAO servidorComissaoDao = new ServidoresComissoesDAO();
+    ServidoresComissoesDAO servidorComissaoDao = new ServidoresComissoesDAO(comissaoDao, servidorDao);
     AtaReunioesDAO ataReuniaoDao = new AtaReunioesDAO(comissaoDao, servidorDao);
-    AtaReunioesPresentesDAO ataReuniaoPresentesDao = new AtaReunioesPresentesDAO();
+    AtaReunioesPresentesDAO ataReuniaoPresentesDao = new AtaReunioesPresentesDAO(ataReuniaoDao, comissaoDao, servidorDao);
     
     public Main(){
         
@@ -60,8 +60,8 @@ public class Main {
 //            Servidor servidor = servidorDao.buscaLogin(login);
             
 
-            login = gui.loginCacheAdm(); // Apagar Login Administrativo
-//            login = gui.loginCacheUser(); //Apagar Login Usuario Comun
+//            login = gui.loginCacheAdm(); // Apagar Login Administrativo
+            login = gui.loginCacheUser(); //Apagar Login Usuario Comun
             
             Servidor servidor = servidorDao.buscaLogin(login);
             

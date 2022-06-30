@@ -370,8 +370,35 @@ public class UserComum {
         }while(escolha != 3);
     }
 
-    private void subMenuOferta(OfertaDisciplinaCursoDAO ofertaDao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void subMenuOferta(OfertaDisciplinaCursoDAO obj) {
+        int escolha = 0;
+        espaco.darEspaco();
+        
+        do {
+          
+            escolha = gui.daoCom();
+
+            switch(escolha){
+                case 1:
+                     espaco.darEspaco();
+                     System.out.println(obj.toString());
+                    break;
+
+                case 2:
+                    espaco.darEspaco();
+                    System.out.println(obj.toStringMin());
+                    System.out.println("Informe o identificador da oferta: ");                    
+                    System.out.println(ofertaDao.buscaEspecifico(Long.parseLong(s.nextLine())));
+                    break;
+
+                case 3:
+                  break;
+
+                 default:
+                      System.out.println("Opção invalida");
+            }
+             
+        }while(escolha != 3);
     }
 
     private void subMenuAtividade(AtividadesDAO obj) {
@@ -471,8 +498,37 @@ public class UserComum {
         }while(escolha != 3);
     }
 
-    private void subMenuServidorComissao(ServidoresComissoesDAO servidorComissaoDao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void subMenuServidorComissao(ServidoresComissoesDAO obj) {
+        int escolha = 0;
+        espaco.darEspaco();
+        
+        do {
+          
+            escolha = gui.daoCom();
+
+            switch(escolha){
+                case 1:
+                     espaco.darEspaco();
+                     System.out.println(obj.toString());
+                    break;
+
+                case 2:
+                     espaco.darEspaco();
+                    System.out.println(obj.toStringMin());
+                    System.out.println("Informe o identifivador da comisao que está procurando");
+                    long idProcura = Long.parseLong(s.nextLine());
+                    
+                    System.out.println( servidorComissaoDao.buscaEspecifico(idProcura));
+                    break;
+
+                case 3:
+                  break;
+
+                 default:
+                      System.out.println("Opção invalida");
+            }
+             
+        }while(escolha != 3);
     }
 
     private void subMenuAtaReuniao(AtaReunioesDAO obj) {
@@ -507,8 +563,39 @@ public class UserComum {
         }while(escolha != 3);
     }
 
-    private void subMenuAtaReuniaoPresentes(AtaReunioesPresentesDAO ataReuniaoPresentesDao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void subMenuAtaReuniaoPresentes(AtaReunioesPresentesDAO obj) {
+        
+         int escolha = 0;
+        espaco.darEspaco();
+
+        do {
+          
+            escolha = gui.daoCom();
+
+            switch(escolha){
+                case 1:
+                    espaco.darEspaco();
+                    System.out.println(obj.toString());
+                    break;
+
+                case 2:
+                    espaco.darEspaco();
+                    
+                    System.out.println(obj.toStringMin());
+                    System.out.println("Informe o identificador da presenca que deseja buscar: ");
+                    System.out.println(obj.buscaEspecifico(Long.parseLong(s.nextLine())));
+                    
+                    break;
+
+                case 3:
+                  break;
+
+                 default:
+                      System.out.println("Opção invalida");
+            }
+             
+        }while(escolha != 3);
+        
     }
 
 
