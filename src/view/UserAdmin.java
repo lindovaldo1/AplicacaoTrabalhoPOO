@@ -16,7 +16,6 @@ import dao.OfertaDisciplinaCursoDAO;
 import dao.OrientacoesDAO;
 import dao.ServidorDAO;
 import dao.ServidoresComissoesDAO;
-import extra.Espaco;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -31,6 +30,7 @@ import model.OfertaDisciplinaCurso;
 import model.Orientacoes;
 import model.Servidor;
 import model.ServidoresComissoes;
+import relatorios.RelatorioAulasCampus;
 
 /**
  *
@@ -146,29 +146,13 @@ public class UserAdmin {
                 case 12:
                     espaco.darEspaco();
                     
-                    System.out.println("\t\tRelatorio Atas das Reuniões\n\n");
+                    subMenuRelatorioAulasCampus(campusDao, cursoDao, disciplinaDao);
                     
-//                    System.out.print("\tInforme o nome da comissao: ");
-//                    Comissao comissao = ComissaoDAO.busca(s.nextLine());
-//                    
-//                    System.out.print("\tInforme a data de inicio para filtrar: ");
-//                    LocalDate inicio = LocalDate.parse(s.nextLine(), fmt);
-//                    
-//                    System.out.print("\tInforme a data de fim para filtrar: ");
-//                    LocalDate fim = LocalDate.parse(s.nextLine(), fmt);
-//                    
-//                    System.out.println((ataReuniaoDao.relatorioPeriodo(comissao, inicio, fim) != null) ? ataReuniaoDao.relatorioPeriodo(comissao, inicio, fim) : "Não tem nenhuma informação para gerar um relatorio"); 
                     break;
                 
                     
                 case 13:
-                    espaco.darEspaco();
-                    System.out.println("\t\t Relatorio das Informações de Aulas\n\n");
-//                    
-//                    System.out.print("\tInforme o nome do campus: ");
-//                    Campus campus = CampusDAO.busca(s.nextLine());
-//                    
-//                    System.out.println((ofertaDao.relatorioInfoAulas(campus) != null) ? ofertaDao.relatorioInfoAulas(campus) : "Não tem nenhuma informação para gerar um relatorio"); 
+                    
                     break;
                     
                 case 14:
@@ -1269,6 +1253,16 @@ public class UserAdmin {
                     break;
             }
         }while(escolha != 6);  
+    }
+
+    private void subMenuRelatorioAulasCampus(CampusDAO campusDao, CursoDAO cursoDao, DisciplinaDAO disciplinaDao) {
+        
+        
+        System.out.println(campusDao.toStringMin());
+        System.out.println("Informe qual o campus deseja o relatorio: ");
+        Campus campus = campusDao.buscaEspecifico(Long.parseLong(s.nextLine()));
+        
+        RelatorioAulasCampus relatorio = new RelatorioAulasCampus(campus, campusDao, cursoDao, disciplinaDao);
     }
 
 

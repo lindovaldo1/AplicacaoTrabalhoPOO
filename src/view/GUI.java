@@ -5,8 +5,7 @@
  */
 package view;
 
-import extra.Espaco;
-import extra.Login;
+import model.Login;
 import java.util.Scanner;
 
 /**
@@ -34,9 +33,9 @@ public class GUI {
         menu.append("\n09 - Servidores Comissões");
         menu.append("\n10 - Ata das Reuniões");
         menu.append("\n11 - Ata reunioes presentes");
-        menu.append("\n12 - Relatorio das Reuniões por periodo");
-        menu.append("\n13 - Relatorio das Informações de Aulas");
-        menu.append("\n14 - Relatorio de Trabalho por Servidor");
+        menu.append("\n12 - Relatorio das Aulas do Campus");
+        menu.append("\n13 - ");
+        menu.append("\n14 - ");
         menu.append("\n15 - Sair");
         menu.append("\n\nEscolha:>_");
         

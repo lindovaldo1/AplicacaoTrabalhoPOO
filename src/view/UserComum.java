@@ -16,7 +16,6 @@ import dao.OfertaDisciplinaCursoDAO;
 import dao.OrientacoesDAO;
 import dao.ServidorDAO;
 import dao.ServidoresComissoesDAO;
-import extra.Espaco;
 import java.util.Scanner;
 import model.Atividades;
 import model.Campus;
